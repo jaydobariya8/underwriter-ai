@@ -319,7 +319,7 @@ export function LiveHUD({ dealId, header, scriptedLines, initialExchanges, voice
                 <div className="label text-text-2">Analyzing exchange…</div>
               </div>
             ) : latest?.agent_output ? (
-              <AgentOutputPanel output={latest.agent_output} />
+              <AgentOutputPanel output={latest.agent_output} dealId={dealId} />
             ) : (
               <div className="text-sm text-text-2">Agent standing by — awaiting first statement.</div>
             )}

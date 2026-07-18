@@ -308,3 +308,22 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* Print — MD one-pager. Hide app chrome so the sheet prints on a single page. */
+@media print {
+  .print-hide {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100% !important;
+  }
+}

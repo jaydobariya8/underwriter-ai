@@ -13,7 +13,7 @@ export default function AppLayout({ children }: Readonly<{ children: React.React
     <div className="app-shell flex min-h-full flex-col">
 
       <header
-        className="sticky top-0 z-20 backdrop-blur"
+        className="print-hide sticky top-0 z-20 backdrop-blur"
         style={{
           background: "color-mix(in srgb, var(--bg) 82%, transparent)",
           borderBottom: "1px solid var(--border)",

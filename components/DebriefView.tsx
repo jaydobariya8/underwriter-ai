@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import type { DebriefPayload } from "@/types";
 import { AnimatedNumber } from "./AnimatedNumber";
 import { CopyButton } from "./CopyButton";
@@ -110,7 +111,17 @@ const MINUTE_LABELS = [
   "Minute 5 — What you need before IC",
 ];
 
-export function DebriefView({ payload, dealName }: { payload: DebriefPayload; dealName: string }) {
+export function DebriefView({
+  payload,
+  dealName,
+  dealId,
+  hasModel,
+}: {
+  payload: DebriefPayload;
+  dealName: string;
+  dealId: string;
+  hasModel: boolean;
+}) {
   const [rehearse, setRehearse] = useState(false);
   const [slide, setSlide] = useState(0);
   const minutes = [
@@ -259,6 +270,36 @@ export function DebriefView({ payload, dealName }: { payload: DebriefPayload; de
           </div>
         ) : null}
       </Panel>
+
+      {/* MODEL DEEP-LINK */}
+      {hasModel ? (
+        <div
+          className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-gold/40 bg-panel p-4"
+          style={{ borderLeftWidth: 3 }}
+        >
+          <div>
+            <div className="label text-gold">Underlying model</div>
+            <p className="mt-1 text-sm text-text-2">
+              See how these numbers were derived — sponsor vs credit leverage, the 50% repayment test, and every
+              flag traced to the line it moves.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={`/deals/${dealId}/model#flag-leverage`}
+              className="rounded-md border border-border px-3 py-1.5 text-sm text-text-2 hover:text-text"
+            >
+              Financing vs credit leverage →
+            </Link>
+            <Link
+              href={`/deals/${dealId}/model#flag-repayment`}
+              className="rounded-md border border-gold/50 px-3 py-1.5 text-sm text-gold hover:bg-gold/10"
+            >
+              Open 50% test in model →
+            </Link>
+          </div>
+        </div>
+      ) : null}
 
       {/* METRICS */}
       <div className="grid gap-3 md:grid-cols-4">

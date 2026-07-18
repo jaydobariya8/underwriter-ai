@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getDeal } from "@/lib/db";
 import type { DocChecklist } from "@/types";
 import { CopyButton } from "@/components/CopyButton";
+import { DealSubNav } from "@/components/DealSubNav";
 import { Chip, Panel, SeverityBadge } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
@@ -25,6 +26,7 @@ export default async function PrecallPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="space-y-4">
+      <DealSubNav dealId={deal.id} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <div className="mb-2 h-px w-8" style={{ background: "var(--gold)" }} />

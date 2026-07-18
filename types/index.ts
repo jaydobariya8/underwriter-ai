@@ -35,6 +35,8 @@ export interface Flag {
   suggestedQuestion?: string;
   /** The analytical rule number that fired, if applicable. */
   rule?: number;
+  /** Deep-link into the paydown model: the line/flag this observation moves. */
+  modelRef?: { anchor: string; label: string };
 }
 
 export interface RuleFired {

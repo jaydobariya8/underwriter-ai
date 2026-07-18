@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getDeal } from "@/lib/db";
 import { getFixture } from "@/lib/fixtures";
 import { hasElevenLabs } from "@/lib/config";
+import { DealSubNav } from "@/components/DealSubNav";
 import { LiveHUD } from "@/components/LiveHUD";
 import type { ScenarioKey } from "@/types";
 
@@ -20,12 +21,15 @@ export default async function CallPage({ params }: { params: Promise<{ id: strin
   const header = `${deal.name.toUpperCase()} · ${deal.txn_type} · ${deal.sector} · ${deal.target_rating}`;
 
   return (
-    <LiveHUD
-      dealId={deal.id}
-      header={header}
-      scriptedLines={scriptedLines}
-      initialExchanges={deal.exchanges}
-      voiceAvailable={hasElevenLabs}
-    />
+    <div className="space-y-4">
+      <DealSubNav dealId={deal.id} />
+      <LiveHUD
+        dealId={deal.id}
+        header={header}
+        scriptedLines={scriptedLines}
+        initialExchanges={deal.exchanges}
+        voiceAvailable={hasElevenLabs}
+      />
+    </div>
   );
 }

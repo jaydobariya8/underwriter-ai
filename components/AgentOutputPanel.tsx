@@ -1,9 +1,23 @@
+import Link from "next/link";
 import type { AgentOutput, Flag } from "@/types";
 import { SeverityBadge } from "./ui";
 import { CopyButton } from "./CopyButton";
 
 // Order risks by severity so the analyst sees the deal-breakers first.
 const SEV_RANK: Record<Flag["severity"], number> = { red: 0, yellow: 1, blue: 2 };
+
+// Map a flag's category to the model line/flag it moves, so the analyst can jump
+// from "what was said" straight to "here's the number it changes".
+function modelAnchorFor(flag: Flag): { anchor: string; label: string } | null {
+  if (flag.modelRef) return flag.modelRef;
+  const c = flag.category.toUpperCase();
+  if (/EBITDA|QUALITY|ADD.?BACK|ADJUST/.test(c)) return { anchor: "flag-ebitda-quality", label: "EBITDA quality" };
+  if (/INTEREST|RATE|SOFR|COVERAGE/.test(c)) return { anchor: "flag-coverage", label: "interest coverage" };
+  if (/LEVERAGE|DEBT/.test(c)) return { anchor: "flag-leverage", label: "leverage" };
+  if (/MARGIN|REVENUE|GROWTH|CASH.?FLOW|FCF|REPAY/.test(c)) return { anchor: "flag-repayment", label: "the 50% test" };
+  if (/STRUCTUR|EQUITY|CUSHION/.test(c)) return { anchor: "flag-equity-cushion", label: "equity cushion" };
+  return null;
+}
 
 function Caret() {
   return (
@@ -21,10 +35,11 @@ function Caret() {
  * expanded it explains WHY it matters and gives the exact question to resolve it — so a
  * junior analyst can act without pinging the VP.
  */
-function RiskCard({ flag }: { flag: Flag }) {
+function RiskCard({ flag, dealId }: { flag: Flag; dealId?: string }) {
   const tint =
     flag.severity === "red" ? "tint-red" : flag.severity === "yellow" ? "tint-amber" : "tint-blue";
-  const hasDetail = Boolean(flag.rationale || flag.suggestedQuestion);
+  const ref = dealId ? modelAnchorFor(flag) : null;
+  const hasDetail = Boolean(flag.rationale || flag.suggestedQuestion || ref);
 
   const header = (
     <div className="flex items-start gap-2">
@@ -68,12 +83,21 @@ function RiskCard({ flag }: { flag: Flag }) {
             <p className="mt-1 text-[13px] leading-snug text-text">“{flag.suggestedQuestion}”</p>
           </div>
         ) : null}
+
+        {ref ? (
+          <Link
+            href={`/deals/${dealId}/model#${ref.anchor}`}
+            className="inline-flex items-center gap-1 text-[12px] text-gold hover:underline"
+          >
+            See {ref.label} in the model →
+          </Link>
+        ) : null}
       </div>
     </details>
   );
 }
 
-export function AgentOutputPanel({ output }: { output: AgentOutput }) {
+export function AgentOutputPanel({ output, dealId }: { output: AgentOutput; dealId?: string }) {
   const ev = output.evasion?.detected ? output.evasion : null;
   const flags = [...output.flags].sort((a, b) => SEV_RANK[a.severity] - SEV_RANK[b.severity]);
   const redCount = flags.filter((f) => f.severity === "red").length;
@@ -157,7 +181,7 @@ export function AgentOutputPanel({ output }: { output: AgentOutput }) {
           <p className="text-[11px] text-text-2">Tap a risk for why it matters and the question to resolve it.</p>
           <div className="space-y-2">
             {flags.map((f, i) => (
-              <RiskCard key={`${f.category}-${i}`} flag={f} />
+              <RiskCard key={`${f.category}-${i}`} flag={f} dealId={dealId} />
             ))}
           </div>
         </section>
