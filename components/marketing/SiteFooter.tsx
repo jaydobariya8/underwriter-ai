@@ -14,7 +14,7 @@ export function SiteFooter() {
               <BrandLockup glyphStyle={{ color: "var(--gold)" }} />
             </Link>
             <p className="mt-4 text-sm leading-relaxed" style={{ color: "color-mix(in srgb, var(--stone) 72%, transparent)" }}>
-              Precision analysis. Institutional trust.
+              AI credit analyst for leveraged finance
             </p>
           </div>
 
@@ -36,10 +36,11 @@ export function SiteFooter() {
               </ul>
             </nav>
             <div>
-              <div className="mk-eyebrow" style={{ color: "var(--gold)" }}>Contact</div>
+              <h2 className="mk-eyebrow" style={{ color: "var(--gold)" }}>Founding team</h2>
               <ul className="mt-3 space-y-2 text-sm">
+                <li style={{ color: "var(--stone)" }}>Arya Chudasama</li>
+                <li style={{ color: "var(--stone)" }}>Jay Dobariya</li>
                 <li><a href={MAILTO} style={{ color: "var(--stone)" }}>arya@underwriter.ai</a></li>
-                <li style={{ color: "color-mix(in srgb, var(--stone) 72%, transparent)" }}>New York</li>
               </ul>
             </div>
           </div>

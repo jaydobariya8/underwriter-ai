@@ -3,7 +3,7 @@ import { SiteNav } from "@/components/marketing/SiteNav";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 
 const DESCRIPTION =
-  "Underwriter AI turns institutional credit judgment into live, auditable guidance across pre-call, live call, and post-call diligence for leveraged finance.";
+  "Underwriter AI helps leveraged-finance analysts ingest deal data, surface critical diligence questions, test transactions, and prepare institutional-quality credit materials.";
 
 export const metadata: Metadata = {
   title: "Underwriter AI | AI Credit Analyst for Leveraged Finance",

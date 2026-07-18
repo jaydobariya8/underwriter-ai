@@ -4,28 +4,28 @@ const MAILTO = "mailto:arya@underwriter.ai?subject=Underwriter%20AI%20inquiry";
 
 const CAPABILITIES = [
   {
-    title: "Run credit analysis",
-    body: "Pressure-test leverage, EBITDA quality, repayment capacity, and forecast assumptions.",
+    title: "Ingest and structure deal data",
+    body: "Bring presentations, models, historicals, EBITDA bridges, and capital structures into one working credit context.",
   },
   {
-    title: "Check covenants",
-    body: "Surface structural protections, headroom questions, and transfer restrictions when the risk profile requires them.",
+    title: "Surface the right questions",
+    body: "Identify what is missing, challenge weak assumptions, and prioritize the diligence questions that can change the credit view.",
   },
   {
-    title: "Assess debt capacity",
-    body: "Separate financing leverage from the fully expensed credit case and stress the path to repayment.",
+    title: "Test whether the transaction works",
+    body: "Pressure-test leverage, earnings quality, repayment capacity, downside resilience, and the path to a sustainable capital structure.",
   },
   {
-    title: "Search comparables",
-    body: "Frame sector and transaction signals against the deal's stated assumptions.",
+    title: "Pressure-test structural protection",
+    body: "Assess covenants, headroom, debt capacity, transfer restrictions, and other protections against the transaction's actual risk profile.",
   },
   {
     title: "Draft the credit memo",
-    body: "Turn the live diligence record into a concise, evidence-led underwriting narrative.",
+    body: "Turn the evidence and diligence record into an institutional-quality credit memo, including concise versions prepared for MD review.",
   },
   {
-    title: "Prepare the IC deck",
-    body: "Produce the five-minute verbal briefing, scorecard, unresolved risks, and escalation path.",
+    title: "Prepare the institution",
+    body: "Produce the IC briefing, scorecard, unresolved risks, follow-up list, and escalation path from the same analytical record.",
   },
 ];
 
@@ -48,14 +48,12 @@ const METHOD = [
 ];
 
 const PROOF = [
-  { stat: "40+", label: "TMT leveraged-finance transactions informing the system" },
+  { stat: "10+", label: "years of hands-on underwriting experience shaping the system" },
   { stat: "35", label: "encoded analytical rules" },
   { stat: "3", label: "connected workflow stages: pre-call, live call, post-call" },
 ];
 
 export default function MarketingHome() {
-  const showDemoPhone = process.env.NODE_ENV !== "production";
-
   return (
     <>
       {/* Hero */}
@@ -67,13 +65,13 @@ export default function MarketingHome() {
               className="mk-display mt-5 text-[2.6rem] sm:text-[3.4rem] lg:text-[3.9rem]"
               style={{ color: "var(--navy)" }}
             >
-              Precision analysis.
-              <br />
-              Institutional trust.
+              Credit judgment,{" "}
+              <br className="hidden sm:block" />
+              built into your diligence process.
             </h1>
             <p className="mt-6 max-w-xl text-[1.05rem] leading-relaxed" style={{ color: "var(--slate)" }}>
-              Underwriter AI turns institutional credit judgment into live, auditable guidance&mdash;before the
-              call, in the room, and through investment committee.
+              Underwriter AI helps analysts ingest deal data, surface the questions that matter, test whether the
+              transaction works, and prepare committee-ready credit materials through MD review.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
@@ -105,8 +103,8 @@ export default function MarketingHome() {
             className="mk-display text-center text-[1.3rem] leading-snug sm:text-[1.6rem]"
             style={{ color: "var(--stone)" }}
           >
-            Institutional credit judgment distilled from{" "}
-            <span style={{ color: "var(--gold)" }}>40+ TMT leveraged-finance transactions</span> into{" "}
+            <span style={{ color: "var(--gold)" }}>Institutional credit judgment</span> shaped by more than a
+            decade of hands-on underwriting experience and encoded into{" "}
             <span style={{ color: "var(--gold)" }}>35 analytical rules</span>.
           </p>
         </div>
@@ -225,30 +223,55 @@ export default function MarketingHome() {
       <section id="team" aria-labelledby="team-h" style={{ background: "var(--white)" }}>
         <div className="mx-auto max-w-[900px] px-5 py-20 md:py-24">
           <p className="mk-eyebrow">Team</p>
-          <h2 id="team-h" className="mk-display mt-4 text-[2rem] sm:text-[2.5rem]" style={{ color: "var(--navy)" }}>
-            Arya Chudasama
+          <h2 id="team-h" className="sr-only">
+            Leadership team
           </h2>
-          <p className="mt-2 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--gold)" }}>
-            Founder &amp; CEO &middot; New York
-          </p>
-          <p className="mt-6 max-w-xl text-[1.05rem] leading-relaxed" style={{ color: "var(--slate)" }}>
-            Arya built Underwriter AI to capture the decisions, calculations, and follow-ups that distinguish
-            institutional leveraged-finance underwriting from generic summarization.
-          </p>
+          <div className="mt-10 grid gap-10 sm:grid-cols-2 sm:gap-12">
+            <article>
+              <div className="h-px w-10" style={{ background: "var(--gold)" }} />
+              <h3
+                className="mk-display mt-4 text-[2rem] sm:text-[2.35rem]"
+                style={{ color: "var(--navy)" }}
+              >
+                Arya Chudasama
+              </h3>
+              <p className="mt-2 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--gold)" }}>
+                Founder &amp; CEO
+              </p>
+              <p className="mt-5 text-[1.05rem] leading-relaxed" style={{ color: "var(--slate)" }}>
+                Arya spent nearly five years at Goldman Sachs and brings hands-on leveraged-finance underwriting
+                judgment to the decisions, calculations, and follow-ups encoded in Underwriter AI.
+              </p>
+            </article>
+            <article>
+              <div className="h-px w-10" style={{ background: "var(--gold)" }} />
+              <h3 className="mk-display mt-4 text-[2rem] sm:text-[2.35rem]" style={{ color: "var(--navy)" }}>
+                Jay Dobariya
+              </h3>
+              <p className="mt-2 text-sm font-medium uppercase tracking-widest" style={{ color: "var(--gold)" }}>
+                Co-founder &amp; CTO
+              </p>
+              <p className="mt-5 text-[1.05rem] leading-relaxed" style={{ color: "var(--slate)" }}>
+                Jay built the technical stack that turns the underwriting methodology into a working product for
+                connected, institutional-quality diligence.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
       {/* Final CTA + contact */}
       <section id="contact" aria-labelledby="contact-h" style={{ background: "var(--navy)" }}>
-        <div className="mx-auto max-w-[1200px] px-5 py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-5 pt-20 md:pt-24">
           <h2 id="contact-h" className="mk-display text-[2rem] sm:text-[2.6rem]" style={{ color: "var(--stone)" }}>
-            Bring institutional judgment into every deal room.
+            Give analysts their time back.
           </h2>
           <p
             className="mt-5 max-w-xl text-[1.05rem] leading-relaxed"
             style={{ color: "color-mix(in srgb, var(--stone) 78%, transparent)" }}
           >
-            For pilots, partnerships, and product access, contact Arya directly.
+            Underwriter AI is built to reduce the 16&ndash;20-hour underwriting grinds that pull analysts away from
+            the judgment, diligence, and deal work that matter most.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
             <a
@@ -256,16 +279,8 @@ export default function MarketingHome() {
               className="rounded-md px-5 py-3 text-sm font-medium transition-opacity hover:opacity-90"
               style={{ background: "var(--gold)", color: "var(--navy)" }}
             >
-              arya@underwriter.ai
+              Contact Underwriter AI
             </a>
-            <span className="text-sm" style={{ color: "color-mix(in srgb, var(--stone) 78%, transparent)" }}>
-              New York
-            </span>
-            {showDemoPhone ? (
-              <span className="text-sm" style={{ color: "color-mix(in srgb, var(--stone) 55%, transparent)" }}>
-                +1 (212) 555-0188 &mdash; demo number, not for production
-              </span>
-            ) : null}
           </div>
         </div>
       </section>
