@@ -1,26 +1,310 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Underwriter.AI — "Bloomberg terminal, 2026" product design system ──
+   Terminal tokens are scoped to `.app-shell` (the product/dashboard chrome)
+   so the public marketing site can render on a light brand theme. */
+.app-shell {
+  /* Brand-aligned navy terminal — same family as the marketing site
+     (navy #071B34 + muted gold) rather than the old cold blue-black. */
+  --bg: #060e1c;
+  --panel: #0b1a30;
+  --panel-2: #0a1626;
+  --border: #1a2c46;
+  --text: #eaeef5;
+  --text-2: #91a0b6;
+  --red: #f0433c;
+  --amber: #f5a623;
+  --blue: #4c8dff;
+  --green: #2ecc71;
+  --gold: #c9a96a;
+  --navy: #071b34;
+  /* chart-specific, theme-aware */
+  --chart-grid: #12213a;
+  --chart-track: #0a1626;
+  --chart-axis: #91a0b6;
+}
+
+/* Ambient brand backdrop for the product surface. */
+.app-shell {
+  background-image:
+    radial-gradient(1200px 500px at 15% -10%, color-mix(in srgb, var(--gold) 8%, transparent), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, #1a3a66 22%, transparent), transparent 55%);
+  background-attachment: fixed;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ── Light mode — sampled from the marketing site (Stone / Navy / Gold) ── */
+html[data-theme="light"] .app-shell {
+  --bg: #f5f3ee;
+  --panel: #ffffff;
+  --panel-2: #efece4;
+  --border: #e4e1d8;
+  --text: #12161c;
+  --text-2: #5f6670;
+  --red: #d92d27;
+  --amber: #b9791a;
+  --blue: #2f6fe0;
+  --green: #1e9e57;
+  --gold: #7a6b40; /* darker gold for readable eyebrows/labels on stone */
+  --navy: #071b34;
+  --chart-grid: #e7e4db;
+  --chart-track: #ece9e1;
+  --chart-axis: #5f6670;
+  background-image:
+    radial-gradient(1100px 460px at 12% -12%, color-mix(in srgb, var(--gold) 10%, transparent), transparent 60%),
+    radial-gradient(820px 440px at 100% 0%, color-mix(in srgb, var(--navy) 6%, transparent), transparent 55%);
+}
+
+.panel {
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-red: var(--red);
+  --color-amber: var(--amber);
+  --color-blue: var(--blue);
+  --color-green: var(--green);
+  --color-gold: var(--gold);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono-jb);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Product shell paints the dark terminal background on its subtree only. */
+.app-shell {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Dense uppercase labels (product) */
+.label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.mono {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+
+.hairline {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Severity tints */
+.tint-red { background: color-mix(in srgb, var(--red) 10%, transparent); border-color: color-mix(in srgb, var(--red) 40%, var(--border)); }
+.tint-amber { background: color-mix(in srgb, var(--amber) 10%, transparent); border-color: color-mix(in srgb, var(--amber) 40%, var(--border)); }
+.tint-blue { background: color-mix(in srgb, var(--blue) 10%, transparent); border-color: color-mix(in srgb, var(--blue) 40%, var(--border)); }
+
+/* ── animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeUp { animation: fadeUp 0.2s ease-out; }
+
+@keyframes pulseRed {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--red) 55%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--red) 0%, transparent); }
+}
+.animate-pulseRed { animation: pulseRed 1.1s ease-in-out 2; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+.animate-shake { animation: shake 0.3s ease-in-out; }
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.animate-livePulse { animation: livePulse 1.4s ease-in-out infinite; }
+
+/* Live-voice equalizer — three bars bouncing while a line is spoken. */
+.eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+.eq-sm { height: 10px; }
+.eq-bar {
+  width: 2.5px;
+  height: 100%;
+  border-radius: 2px;
+  background: currentColor;
+  transform-origin: bottom;
+  animation: eqBounce 0.9s ease-in-out infinite;
+}
+.eq-bar:nth-child(2) { animation-delay: 0.18s; }
+.eq-bar:nth-child(3) { animation-delay: 0.36s; }
+@keyframes eqBounce {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--panel) 0%, var(--panel-2) 50%, var(--panel) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 0.4rem;
+}
+
+/* thin scrollbars for the terminal feel (product only) */
+.app-shell * { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+.app-shell *::-webkit-scrollbar { width: 8px; height: 8px; }
+.app-shell *::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+
+/* ── dashboard motion + interaction polish ── */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.reveal-up {
+  opacity: 0;
+  animation: revealUp 0.55s cubic-bezier(0.16, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes sheen {
+  0% { transform: translateX(-120%); }
+  60%, 100% { transform: translateX(220%); }
+}
+
+/* Card hover lift with a gold edge + glow. */
+.lift {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+.lift:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--border));
+  box-shadow: 0 16px 40px -18px color-mix(in srgb, var(--gold) 30%, transparent);
+}
+
+/* Primary KPI tile: subtle animated sheen sweeping across on hover. */
+.sheen-host { position: relative; overflow: hidden; }
+.sheen-host::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, color-mix(in srgb, var(--gold) 14%, transparent) 50%, transparent 80%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.sheen-host:hover::after {
+  animation: sheen 1.1s ease forwards;
+}
+
+/* Nav link underline that grows from the left on hover / active. */
+.nav-underline { position: relative; }
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+.nav-underline:hover::after,
+.nav-underline[data-active="true"]::after { transform: scaleX(1); }
+
+/* Theme toggle: swap glyphs purely via [data-theme] so there is no
+   hydration mismatch and no client state is needed to pick the icon.
+   Default (dark) exposes the sun (→ switch to light); light exposes the moon. */
+.theme-ico { display: inline-flex; transition: transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1); }
+.theme-ico-moon { display: none; }
+html[data-theme="light"] .theme-ico-sun { display: none; }
+html[data-theme="light"] .theme-ico-moon { display: inline-flex; }
+.theme-toggle:hover .theme-ico { transform: rotate(35deg); }
+
+/* ── Marketing brand system — "Precision analysis. Institutional trust." ──
+   Light Stone base, Navy hero/footer, muted Gold accents used sparingly. */
+.marketing-shell {
+  --navy: #071b34;
+  --gold: #9b8b62;
+  --stone: #f7f6f3;
+  --charcoal: #1a1e23;
+  --slate: #6b727c;
+  --white: #ffffff;
+  --divider: color-mix(in srgb, var(--navy) 12%, transparent);
+  --divider-strong: color-mix(in srgb, var(--navy) 22%, transparent);
+  background: var(--stone);
+  color: var(--charcoal);
+  font-family: var(--font-display), var(--font-inter), Arial, sans-serif;
+}
+
+/* Display type: Söhne-adjacent light weight, generous tracking. */
+.mk-display {
+  font-weight: 300;
+  letter-spacing: 0.006em;
+  line-height: 1.04;
+}
+
+/* Small-caps utility label used across sections. */
+.mk-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.mk-hairline {
+  border: 0;
+  border-top: 1px solid var(--divider);
+}
+
+/* ── global a11y / motion ── */
+html {
+  scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold, #9b8b62);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

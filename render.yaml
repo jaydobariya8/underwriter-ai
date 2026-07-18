@@ -1,0 +1,33 @@
+# Render blueprint. Connect the repo in Render and it reads this.
+services:
+  - type: web
+    name: underwriter-ai
+    runtime: node
+    plan: starter # not free — free tier cold-sleeps mid-judging
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # LLM — Gemini preferred (free, AI Studio), Anthropic fallback
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      # Supabase (server-only, runtime-read)
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      # Exa market intelligence
+      - key: EXA_API_KEY
+        sync: false
+      # ElevenLabs — live-call voice
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_MODEL
+        value: eleven_turbo_v2_5

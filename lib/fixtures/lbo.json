@@ -1,0 +1,279 @@
+{
+  "key": "lbo",
+  "config": {
+    "name": "Project Atlas",
+    "sector": "Software / SaaS",
+    "callType": "Lender call (sponsor + management)",
+    "txnType": "LBO (new)",
+    "rating": "B / B2"
+  },
+  "docChecklist": {
+    "lenderPresentation": true,
+    "paydownModel": false,
+    "historicals": false,
+    "ebitdaBridgeQoe": false,
+    "pfCapTable": true
+  },
+  "precall": {
+    "docRequestEmail": {
+      "subject": "Project Atlas — Initial Document Request",
+      "body": "Following our conversation, please provide the following materials at your earliest convenience so we can begin our review:\n\n1. Paydown model\n2. Last 8 quarters of quarterly financials\n3. Minimum 2 years of audited financial statements\n4. PF cap table\n5. Most recent lender presentation\n6. Transaction materials (CIM, management presentation)\n7. PF EBITDA bridge\n8. Adjustment details with roll-off schedule\n\nWe would appreciate receiving the paydown model and PF cap table first as priority items so we can start our initial leverage and capital structure assessment. Please let us know if any of these materials are not yet available."
+    },
+    "questionList": [
+      {
+        "priority": "red",
+        "category": "EBITDA",
+        "question": "Capitalised R&D quantum and what EBITDA looks like fully expensed — leverage on that basis.",
+        "source": "EBITDA bridge / sponsor model",
+        "recipient": "Sponsor"
+      },
+      {
+        "priority": "red",
+        "category": "Revenue",
+        "question": "NRR latest figure and the named bridge from NRR-implied growth to the 12% projection.",
+        "source": "Lender presentation",
+        "recipient": "Sponsor / management"
+      },
+      {
+        "priority": "red",
+        "category": "Repayment",
+        "question": "Full sponsor model FCF build to run the cumulative 7-year 50% repayment test and back-weighting.",
+        "source": "Paydown model",
+        "recipient": "Lev fin"
+      },
+      {
+        "priority": "yellow",
+        "category": "Structure",
+        "question": "Expected close date and any regulatory review — syndication risk if close is 4-6 months out.",
+        "source": "Transaction materials",
+        "recipient": "Sponsor"
+      },
+      {
+        "priority": "yellow",
+        "category": "M&A",
+        "question": "Which specific prior investment is the cloud-transition playbook based on, and synergies projected vs delivered.",
+        "source": "Sponsor track record",
+        "recipient": "Sponsor"
+      }
+    ]
+  },
+  "exchanges": [
+    {
+      "seq": 1,
+      "speaker": "SPONSOR",
+      "text": "Thank you all for joining today. We're very excited to present this opportunity. Target is the clear market leader in B2B enterprise workflow software with over 2,000 enterprise customers across 40 countries. We see this as a highly compelling transaction. The business has an exceptionally sticky recurring revenue base — customers have been with the platform for an average of seven years and switching costs are extremely high. We see a significant margin expansion opportunity as we complete the transition of the remaining on-premise customers to cloud — a well-understood playbook we have executed successfully on prior investments. The deal is coming at 7x on LTM adjusted EBITDA of $200mm — $1.4bn of total debt with 40% equity from us. The EBITDA bridge reflects the investment we've been making in the platform — some capitalised R&D and acquisition-related costs that we view as clearly non-recurring. Management is projecting 12% revenue growth and approximately 600bps of margin expansion over the forecast period. We're expecting to close in the next four to six months subject to customary regulatory approvals.",
+      "fallbackOutput": {
+        "askNow": "On the LTM EBITDA in the deck — is that as of transaction close, and when exactly are we expecting to close?",
+        "internalCalculation": "7x on $200mm = $1.4bn debt. Above 4x — full credit case. Equity 40% = $933mm on $2.33bn total cap — acceptable cushion. Close 4-6 months with regulatory review — syndication risk monitoring item (Rule 15). Capitalised R&D described as 'clearly non-recurring investment' is sponsor framing for a recurring operating cost — must calculate fully expensed EBITDA. NRR not cited despite 'exceptionally sticky' — from deck NRR 103% implies ~3% organic vs 12% projected: 9-point gap, no bridge.",
+        "flags": [
+          { "category": "EBITDA", "severity": "red", "text": "Capitalised R&D described as 'clearly non-recurring investment' — sponsor smoothing. Product development is a recurring operating cost. Until fully expensed EBITDA is given, adjusted EBITDA is overstated and leverage understated." },
+          { "category": "REVENUE", "severity": "red", "text": "NRR not cited despite emphasis on 'exceptionally sticky recurring revenue.' At 103% NRR organic growth is ~3% vs 12% projected — a 9-point gap with no bridge." },
+          { "category": "EVASION", "severity": "yellow", "text": "'Exceptionally sticky recurring revenue base' used without citing NRR. Sponsor has the number — omission not absence. Surface NRR immediately." },
+          { "category": "STRUCTURE", "severity": "yellow", "text": "Close 4-6 months with regulatory approval — syndication risk (Rule 15). Fundamentals must be stress-tested at close date, not just signing." }
+        ],
+        "open": { "count": 9, "items": ["Closing date not confirmed", "LTM date unverified", "NRR not cited", "Capitalised R&D quantum unknown", "Fully expensed EBITDA not given", "Revenue growth bridge not given", "Margin expansion mechanisms unnamed", "Prior deal synergy track record not evidenced", "Repayment capacity not calculable"] },
+        "covered": { "count": 4, "items": ["LBO confirmed, equity 40%", "2,000+ enterprise customers, 40 countries", "Close 4-6 months, regulatory approval required", "Cloud transition named as margin and growth driver"] },
+        "evasion": {
+          "detected": true,
+          "originalQuestion": "What is NRR, given the emphasis on recurring revenue stickiness?",
+          "pushback": "Just on NRR — do we have the latest figure and how has it trended over the last few quarters?"
+        },
+        "questionQueue": [
+          "On the LTM EBITDA in the deck — is that as of transaction close, and when exactly do we close?",
+          "On NRR — the latest figure and how it's trended over the last few quarters?",
+          "On the capitalised R&D add-back — the quantum, and what EBITDA looks like fully expensed?",
+          "On the prior cloud-transition playbook — which specific investment, and synergies projected vs delivered?",
+          "Can we walk the bridge from the organic baseline to the 12% projection?",
+          "Can we get the full EBITDA adjustment schedule with roll-off, and is there a QoE?"
+        ],
+        "rulesFired": [
+          { "rule": 1, "label": "LTM date verification" },
+          { "rule": 3, "label": "NRR revenue bridge" },
+          { "rule": 5, "label": "prior deal track" },
+          { "rule": 6, "label": "boilerplate language" },
+          { "rule": 15, "label": "syndication risk" }
+        ]
+      }
+    },
+    {
+      "seq": 2,
+      "speaker": "CEO",
+      "text": "Thanks for having us. I've been with the business for eleven years. On NRR — we're currently at 103% and that's been stable. We see a clear path to getting that above 110% as we migrate customers to cloud because cloud customers historically show 115% NRR versus 95% for on-premise. On the revenue growth — the 12% is driven by the cloud migration upsell, net new logo additions of around 400 per quarter, and geographic expansion into APAC which we're just beginning. On the capitalised R&D — that's approximately $35mm annually and it relates to new product development for the cloud platform. We view this as investment spend not operating spend because once the platform is built the ongoing maintenance cost drops materially. We're very comfortable with the quality of earnings here.",
+      "fallbackOutput": {
+        "askNow": "On the $35mm capitalised R&D — once the platform is built, is there a specific point in the model where that spend steps down?",
+        "internalCalculation": "NRR 103% blended, 95% on-prem, 115% cloud. Cloud mix implied = (103-95)/(115-95) = 40% cloud, 60% on-prem today (Rule 16). To hit 12% growth, cloud must reach ~75-80% of revenue — the entire growth thesis is a cloud migration execution thesis; if migration stalls at 40%, growth stays ~3%. Fully expensed: $200mm − $35mm R&D = $165mm; leverage = $1.4bn ÷ $165mm = 8.5x vs stated 7x — 1.5 turns on one add-back. 'Very comfortable with quality of earnings' twice, no QoE — evasion pattern.",
+        "flags": [
+          { "category": "EBITDA", "severity": "red", "text": "Capitalised R&D $35mm. Fully expensed EBITDA = $165mm. Fully expensed leverage = 8.5x vs stated 7x. 'Once the platform is built' not credible — continuous software development is an operating cost." },
+          { "category": "REVENUE", "severity": "red", "text": "Cloud migration execution thesis (Rule 16). Cloud ~40% of revenue today; to hit 12% growth it must reach ~75-80%. If migration stalls, growth collapses to ~3%. Entire revenue thesis is execution dependent." },
+          { "category": "REVENUE", "severity": "yellow", "text": "APAC 'just beginning' — no revenue yet, used as an outer-year growth driver. Least validated component of the 12% bridge." }
+        ],
+        "open": { "count": 7, "items": ["Fully expensed EBITDA not confirmed", "Cloud migration timeline and current mix", "New logo ASP vs base unknown", "APAC revenue contribution and timeline", "QoE not mentioned", "Repayment capacity not calculable", "Prior deal synergy track record"] },
+        "covered": { "count": 4, "items": ["NRR 103% blended, 95% on-prem, 115% cloud", "Revenue bridge — cloud upsell, 400 new logos/quarter, APAC", "Capitalised R&D quantum $35mm annually", "CEO tenure 11 years"] },
+        "evasion": {
+          "detected": true,
+          "originalQuestion": "What does EBITDA look like if R&D is fully expensed?",
+          "pushback": "Just to make sure we have the right number — if we expense the full $35mm, what does that bring adjusted EBITDA to and what does leverage look like on that basis?"
+        },
+        "questionQueue": [
+          "If we expense the full $35mm, what does that bring adjusted EBITDA and leverage to?",
+          "What percentage of the customer base is on cloud today versus on-prem, and the migration timeline?",
+          "On new logos at 400/quarter — average contract value versus the existing base?",
+          "On APAC — when does it contribute meaningfully and what investment is required?",
+          "On quality of earnings — is there a QoE report or is this internal analysis?"
+        ],
+        "rulesFired": [
+          { "rule": 3, "label": "NRR revenue bridge" },
+          { "rule": 8, "label": "fully expensed EBITDA" },
+          { "rule": 12, "label": "QoE queued" },
+          { "rule": 16, "label": "blended arithmetic" }
+        ]
+      }
+    },
+    {
+      "seq": 3,
+      "speaker": "SPONSOR",
+      "text": "On the fully expensed EBITDA — look, we've modelled this carefully and we're comfortable the R&D capitalisation is appropriate under GAAP. If you were to expense it fully, adjusted EBITDA would be approximately $165mm, implying leverage of around 8.5x on that basis. But we don't think that's the right way to look at it because this spend is genuinely building a new asset that will generate returns for the next fifteen years. On the cloud migration — we're currently at about 38% cloud, 62% on-premise. We expect to reach 75% cloud within three years and full migration within five. On new logo ASP — new logos are coming in at about 55-60% of existing ARPU but our data shows they expand to 85-90% within 24 months. On APAC — we've signed our first two distribution partnerships, early pipeline is encouraging, meaningful revenue from year three. On the QoE — we don't have one for this transaction, we're relying on management accounts reviewed by our finance team.",
+      "fallbackOutput": {
+        "askNow": "On the cloud migration — 38% to 75% in three years is a big shift. Do we have historical migration data showing the actual run rate?",
+        "internalCalculation": "Fully expensed EBITDA confirmed $165mm, leverage 8.5x — sponsor challenged framing but gave the number; credit case uses $165mm and 8.5x regardless. Migration arithmetic: 38% cloud today matches 103% NRR; 75% cloud supports ~110% NRR (~10% growth); 100% supports ~115% NRR (~15%). Arithmetically consistent with 12% IF executed — pace ~1pp/month, no historical velocity data. New logo ASP 55-60% expanding to 85-90% in 24 months — management claim, unverified. No QoE — weakest verification standard on a 7x LBO.",
+        "flags": [
+          { "category": "EBITDA", "severity": "red", "text": "No QoE on a 7x LBO — management accounts reviewed by sponsor only. Credit team carries full verification burden. EBITDA quality remains Level 1." },
+          { "category": "EBITDA", "severity": "red", "text": "'Building a new asset generating returns for 15 years' — standard capitalised R&D justification, not accepted. Cloud platform requires continuous development. Credit case uses $165mm and 8.5x. Non-negotiable." },
+          { "category": "REVENUE", "severity": "yellow", "text": "Migration pace 37pp in 36 months — no historical velocity data. Cohort expansion management-provided, unverified. Both need actual data before the revenue thesis is accepted." },
+          { "category": "REVENUE", "severity": "blue", "text": "APAC — two partnerships signed, revenue from year three, unquantified. Least credible component of the 12% bridge." }
+        ],
+        "open": { "count": 5, "items": ["Historical migration velocity not provided", "Cohort expansion data unverified", "APAC revenue quantum unquantified", "Reported EBITDA not given", "Repayment capacity not calculable"] },
+        "covered": { "count": 5, "items": ["Fully expensed EBITDA $165mm, leverage 8.5x", "Cloud mix 38% cloud, 62% on-prem", "Migration target 75% in 3 years, 100% in 5", "New logo cohort 55-60% to 85-90% (unverified)", "No QoE — management accounts only"] },
+        "evasion": {
+          "detected": true,
+          "originalQuestion": "What does EBITDA look like fully expensed — and is 8.5x the credit leverage?",
+          "pushback": "Understood on the framing — but for the credit case we anchor on $165mm and 8.5x. Can we align on that as the basis before we move on?"
+        },
+        "questionQueue": [
+          "On migration pace — historical data on how quickly customers have migrated over the last few quarters?",
+          "On cohort expansion — a vintage analysis showing how prior cohorts actually tracked toward existing ARPU?",
+          "On APAC from year three — the revenue quantum being modelled and the assumptions behind it?",
+          "On reported EBITDA — the unadjusted figure before add-backs, and the full bridge to $200mm?",
+          "On the QoE — is there any plan to commission one before close?"
+        ],
+        "rulesFired": [
+          { "rule": 8, "label": "fully expensed EBITDA" },
+          { "rule": 12, "label": "QoE absent" },
+          { "rule": 16, "label": "blended arithmetic" },
+          { "rule": 17, "label": "playbook rationale" }
+        ]
+      }
+    },
+    {
+      "seq": 4,
+      "speaker": "SPONSOR",
+      "text": "On the working capital — of the $22mm annual source, approximately $15mm is from deferred revenue growth as ARR expands, and the remaining $7mm is from payables optimisation as we consolidate vendor contracts. On the FCF gap — you're right, we missed a line. There is $30mm of growth capex in year one related to the cloud infrastructure buildout, stepping down to $15mm in year two. On the PF debt table — the structure is a $1.1bn first lien term loan at SOFR plus 450bps, a $150mm RCF undrawn at close, and $150mm of second lien at SOFR plus 800bps. No PIK, no hedging programme in place. On the year by year FCF — year one $53mm, year two $78mm, year three $105mm, year four $130mm, year five $155mm, year six $168mm, year seven $180mm. Cumulative $869mm.",
+      "fallbackOutput": {
+        "askNow": "On the interest rate in the model — at current SOFR the first and second lien push cash interest well above the $85mm modelled. Has the model been refreshed, or is there a hedge?",
+        "internalCalculation": "WC $22mm = $15mm deferred revenue (strip per Rule 9) + $7mm payables (likely one-time). Ex-deferred operational WC ~flat. SOFR check (Rule 18): current SOFR ~4.3%. 1L $1.1bn at +450 = 8.8% = $96.8mm; 2L $150mm at +800 = 12.3% = $18.5mm; total ~$115mm vs stated $85mm — $30mm/year gap, model rate stale. Revised coverage: fully expensed $165mm ÷ $115mm = 1.43x — dangerously thin. Back-weighting: years 1-3 $236mm = 27%, years 4-7 $633mm = 73% (Rule 14). Repayment: at current SOFR, $869mm − $30mm×7 = $659mm ÷ $1.4bn = 47% — FAILS.",
+        "flags": [
+          { "category": "INTEREST", "severity": "red", "text": "Model SOFR assumption stale. Corrected cash interest ~$115mm vs $85mm stated — $30mm annual gap. Interest coverage on fully expensed EBITDA 1.43x — dangerously thin. Year one FCF near breakeven at current rates." },
+          { "category": "REPAYMENT", "severity": "red", "text": "Adjusted for the $30mm interest gap, cumulative FCF ~$659mm ÷ $1.4bn = 47% — fails the 50% test. 73% back-weighted to years 4-7." },
+          { "category": "CASHFLOW", "severity": "yellow", "text": "WC $22mm source is $15mm deferred revenue (strip per Rule 9) plus $7mm one-time payables. Ex-deferred operational WC is essentially flat — the source is not sustainable." },
+          { "category": "STRUCTURE", "severity": "yellow", "text": "$30mm growth capex in year one was omitted from the call summary — surfaced only when pressed. Confirms the need to read the full model waterfall, not call-stated FCF." }
+        ],
+        "open": { "count": 4, "items": ["Model refresh for current SOFR or hedge plan", "Ex-deferred WC historical trend", "Reported EBITDA still not given", "Cohort and migration velocity data still pending"] },
+        "covered": { "count": 5, "items": ["WC breakdown — $15mm deferred, $7mm payables", "Growth capex $30mm Y1 stepping to $15mm Y2", "PF debt table — 1L $1.1bn +450, 2L $150mm +800, RCF $150mm undrawn", "No PIK, no hedging", "Year-by-year FCF, cumulative $869mm"] },
+        "evasion": null,
+        "questionQueue": [
+          "On the interest rate — has the model been refreshed for current SOFR, or is there a hedging programme?",
+          "On the working capital — stripping deferred revenue, what does operational WC look like against the last eight quarters?",
+          "On reported EBITDA — the unadjusted figure and the full bridge to $200mm?",
+          "On the $30mm growth capex — does it extend beyond year two if migration slips?"
+        ],
+        "rulesFired": [
+          { "rule": 9, "label": "strip deferred revenue" },
+          { "rule": 14, "label": "cumulative repayment" },
+          { "rule": 18, "label": "SOFR stale check" },
+          { "rule": 19, "label": "paydown model primary" }
+        ]
+      }
+    }
+  ],
+  "fallbackDebrief": {
+    "mdSummary": "The deal is a software LBO at 7x stated leverage, but our credit leverage is 8.5x once the $35mm of capitalised R&D is fully expensed. The credit story depends on a cloud-migration execution thesis — cloud is only 40% of revenue today and must reach 75-80% to support the 12% growth projection. The biggest risk is a stale interest assumption: at current SOFR, cash interest is roughly $30mm a year higher than modelled, pushing coverage on fully expensed EBITDA to 1.43x and repayment below the 50% test at 47%. Before IC we need the model refreshed for current rates, the reported-to-adjusted EBITDA bridge, and a QoE — there is none on a 7x LBO.",
+    "icBriefing": {
+      "minute1": "This is a new LBO. The sponsor is taking a B2B enterprise workflow software business private at 7x on $200mm of adjusted EBITDA — $1.4bn of debt with 40% equity. The business is mid-transition from on-premise to cloud, and the whole thesis rests on completing that migration. On our numbers post-transaction credit leverage is 8.5x, not the 7x in the deck.",
+      "minute2": "What is genuinely good here: 2,000+ enterprise customers across 40 countries, seven-year average tenure, and cloud cohorts that retain at 115% NRR versus 95% on-premise. Equity contribution is a healthy 40%, giving a real cushion. If the migration executes, the revenue and NRR arithmetic is internally consistent with the plan.",
+      "minute3": "The thing that concerns me most is the interest assumption. The model runs cash interest at $85mm, but the debt is $1.1bn of first lien at SOFR plus 450 and $150mm of second lien at SOFR plus 800, all floating and unhedged. At today's SOFR that is about $115mm — a $30mm annual gap. That takes interest coverage on fully expensed EBITDA to 1.43x and, once you also correct for it, drops cumulative repayment to 47%, below our 50% threshold. Year one free cash flow is near breakeven on a fully expensed basis.",
+      "minute4": "Beyond that we're watching three things. There is no QoE on a 7x LBO — we're relying on management accounts the sponsor's own finance team reviewed. The revenue thesis is entirely execution-dependent: cloud is 40% of revenue today and has to reach 75-80%, and we have no historical migration velocity data. And working capital is shown as a $22mm source, but $15mm of that is deferred revenue that reverses if growth slows, so it isn't sustainable.",
+      "minute5": "Before we can recommend approval we need three things: the model refreshed for the current rate environment, or a hedging programme, so we can see true coverage; the full reported-to-adjusted EBITDA bridge plus a QoE; and historical migration and cohort data to test the revenue thesis. On current numbers this is an 8.5x credit that fails our repayment test — I would not take it to committee without those items and a structural protection package."
+    },
+    "scorecard": {
+      "dimensions": [
+        { "name": "Business quality", "score": 3, "threshold": 3 },
+        { "name": "Sector tailwind", "score": 3, "threshold": 3 },
+        { "name": "EBITDA quality", "score": 1, "threshold": 3 },
+        { "name": "Repayment capacity", "score": 1, "threshold": 3 },
+        { "name": "Leverage and coverage", "score": 1, "threshold": 3 },
+        { "name": "Structural protections", "score": 2, "threshold": 3 },
+        { "name": "Forecast credibility", "score": 2, "threshold": 2 }
+      ],
+      "total": 13,
+      "verdict": "DOES NOT PROCEED"
+    },
+    "metrics": {
+      "ebitdaQuality": "Level 4 — capitalised R&D $35mm, no QoE, management accounts only",
+      "financingLeverage": "7.0x stated on $200mm ($1.4bn debt)",
+      "creditLeverage": "8.5x on fully expensed EBITDA of $165mm",
+      "repaymentTest": { "status": "FAIL", "detail": "At current SOFR, cumulative FCF ~$659mm ÷ $1.4bn = 47%, below 50%. 73% back-weighted to years 4-7." },
+      "forecastHaircut": "Revenue thesis execution-dependent; apply haircut until migration velocity evidenced"
+    },
+    "topUnresolvedRed": [
+      "Fully expensed leverage 8.5x vs stated 7x — $35mm capitalised R&D treated as non-recurring",
+      "Stale SOFR — cash interest ~$30mm/year understated, coverage 1.43x on fully expensed EBITDA",
+      "Repayment fails at 47% adjusted for interest gap, 73% back-weighted",
+      "No QoE on a 7x LBO — full verification burden on credit"
+    ],
+    "monitoringYellow": [
+      "Cloud migration execution thesis — 40% today, must reach 75-80% for 12% growth",
+      "Working capital $22mm source is mostly deferred revenue — not sustainable",
+      "New logo cohort expansion 55-60% to 85-90% — management claim, unverified",
+      "Syndication risk — 4-6 month close with regulatory review",
+      "APAC used as outer-year growth driver — no revenue yet"
+    ],
+    "escalation": {
+      "tier": "Tier 2 — large PF hold. ILA and MD actively involved.",
+      "toVP": [
+        "Working capital sustainability — strip deferred revenue and compare to historicals",
+        "Migration velocity and cohort data — review when received"
+      ],
+      "toILAMD": [
+        "Fully expensed leverage 8.5x and repayment failing at 47% — deal-level concerns for senior sign-off",
+        "Stale SOFR $30mm interest gap and no QoE — verification and rate refresh required before IC"
+      ],
+      "mdAwareness": "7x LBO that is 8.5x on our numbers, failing the repayment test at 47% once the stale SOFR gap is corrected, with no QoE. Multiple deal-level concerns; likely CCO given unresolved reds at IC.",
+      "capitalMarketsFlags": [
+        "Confirm pricing (SOFR+450 1L / SOFR+800 2L) against current book and any OID/flex — surface to syndication desk",
+        "4-6 month close with regulatory review — syndication risk, stress fundamentals at close date"
+      ]
+    },
+    "followUpEmail": {
+      "subject": "Project Atlas LBO — Follow-Up Items Before IC",
+      "body": "Thank you for the call today. To finalise our credit assessment ahead of committee, please provide the following:\n\n1. Paydown model refreshed for the current rate environment (or details of any hedging programme) — we need true cash interest and coverage. [Recipient: lev fin — priority, before next call]\n2. Full reported-to-adjusted EBITDA bridge with every add-back, quantum, and roll-off; and a QoE report or the plan to commission one before close. [Recipient: sponsor — before IC]\n3. Historical cloud migration velocity (last 8 quarters) and a vintage cohort analysis of new-logo ARPU expansion. [Recipient: management — before IC]\n4. Section 382 / NOL analysis and the year-by-year FCF schedule to finalise back-weighting. [Recipient: lev fin — before IC]\n5. Confirmation of pricing, OID, and any flex on the term loans. [Recipient: syndication desk]\n\nAs priority, the refreshed model and the EBITDA bridge with QoE are the gating items for our credit case."
+    },
+    "evasionLog": [
+      {
+        "originalQuestion": "What is NRR, given the emphasis on recurring revenue stickiness?",
+        "deflection": "Described the base as 'exceptionally sticky' with seven-year tenure but did not cite NRR.",
+        "pushback": "Just on NRR — do we have the latest figure and how has it trended over the last few quarters?"
+      },
+      {
+        "originalQuestion": "What does EBITDA look like if R&D is fully expensed?",
+        "deflection": "'We're very comfortable with the quality of earnings here' — repeated confidence without the number.",
+        "pushback": "Just to make sure we have the right number — if we expense the full $35mm, what does that bring adjusted EBITDA and leverage to?"
+      },
+      {
+        "originalQuestion": "Is 8.5x the right credit leverage basis?",
+        "deflection": "Gave $165mm and 8.5x but disputed the framing — 'we don't think that's the right way to look at it.'",
+        "pushback": "Understood on the framing — but the credit case anchors on $165mm and 8.5x. Can we align on that as the basis?"
+      }
+    ],
+    "equityCreditNote": "Equity cushion at 40% of total capitalisation gives the sponsor meaningful skin in the game at entry. But the aggressive add-back posture and the stale rate assumption suggest the sponsor is managing to a headline 7x that does not reflect true credit leverage of 8.5x. Recommend anchoring covenants to a fully expensed EBITDA definition and requiring a rate refresh and QoE before IC."
+  }
+}

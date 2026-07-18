@@ -1,0 +1,320 @@
+{
+  "key": "kaseya",
+  "config": {
+    "name": "Kaseya",
+    "sector": "Software / SaaS",
+    "callType": "Internal relay (lev fin)",
+    "txnType": "Refinancing",
+    "rating": "B / B2"
+  },
+  "docChecklist": {
+    "lenderPresentation": true,
+    "paydownModel": false,
+    "historicals": false,
+    "ebitdaBridgeQoe": false,
+    "pfCapTable": true
+  },
+  "precall": {
+    "docRequestEmail": {
+      "subject": "Kaseya — Initial Document Request",
+      "body": "Following our conversation, please provide the following materials at your earliest convenience so we can begin our review:\n\n1. Paydown model\n2. Last 8 quarters of quarterly financials\n3. Minimum 2 years of audited financial statements\n4. PF cap table\n5. Most recent lender presentation\n6. Transaction materials (CIM, management presentation)\n7. PF EBITDA bridge\n8. Adjustment details with roll-off schedule\n\nWe would appreciate receiving the paydown model and PF cap table first as priority items so we can start our initial leverage and capital structure assessment. Please let us know if any of these materials are not yet available."
+    },
+    "questionList": [
+      {
+        "priority": "red",
+        "category": "EBITDA",
+        "question": "Full EBITDA adjustment schedule with roll-off timeline per line item, and is a QoE report available?",
+        "source": "EBITDA bridge / QoE",
+        "recipient": "Lev fin"
+      },
+      {
+        "priority": "red",
+        "category": "Repayment",
+        "question": "Full sponsor model FCF build to run the cumulative 7-year 50% repayment test.",
+        "source": "Paydown model",
+        "recipient": "Lev fin"
+      },
+      {
+        "priority": "yellow",
+        "category": "Margins",
+        "question": "On 400-500bps margin expansion in a straight refi — the specific named driver behind each line item.",
+        "source": "Lender presentation",
+        "recipient": "Lev fin"
+      },
+      {
+        "priority": "yellow",
+        "category": "Revenue",
+        "question": "NRR 108% vs 10-12% projected growth — the named bridge for the incremental growth.",
+        "source": "Lender presentation",
+        "recipient": "Lev fin"
+      },
+      {
+        "priority": "blue",
+        "category": "Structure",
+        "question": "Post-transaction, is anything planned to be drawn on the revolver at close?",
+        "source": "PF cap table",
+        "recipient": "Lev fin"
+      }
+    ]
+  },
+  "exchanges": [
+    {
+      "seq": 1,
+      "speaker": "LEV FIN",
+      "text": "So Kaseya is looking to refinance its existing private credit debt. The deal is coming at approximately 7x on LTM adjusted EBITDA of around $600mm — so call it $4bn of total debt. The company has seen strong operational improvement since the Datto acquisition — EBITDA quality has normalised significantly, adjustment ratio is now around 34% versus where it was at close. NRR is tracking around 108-110% and management is projecting revenue growth of around 10-12% going forward with approximately 400-500bps of margin expansion over the forecast period. This is a straight refi — no new money, no acquisition. Just refinancing the existing private credit stack into the broadly syndicated market.",
+      "fallbackOutput": {
+        "askNow": "On the LTM EBITDA — that $600mm, as of what date is that?",
+        "internalCalculation": "7x on $600mm = $4.2bn debt. Straight refi — full credit case required (above 4x). Adjustment ratio 34% — Level 2 quality, roll-off schedule needed to verify normalisation. FY23 148% to FY24 34% is a dramatic reduction requiring line-by-line bridge verification pre-call. Margin expansion 400-500bps on a straight refi — above the 100bps/year threshold with no named catalyst yet.",
+        "flags": [
+          { "category": "MARGINS", "severity": "yellow", "text": "400-500bps margin expansion on a straight refi — no M&A, nothing structural changing. Above 100bps/year threshold. Named catalyst required." },
+          { "category": "EBITDA", "severity": "yellow", "text": "Adjustment ratio FY23 148% to FY24 34%. Requires line-by-line bridge comparison to verify genuine roll-off, not reclassification." }
+        ],
+        "open": { "count": 7, "items": ["LTM date unverified", "Margin expansion drivers unnamed", "NRR to revenue growth bridge not given", "Add-back schedule not received", "QoE status unknown", "Repayment capacity not calculable", "Revolver draw status unknown"] },
+        "covered": { "count": 2, "items": ["Transaction type — straight refi, no new money", "Normalisation story given FY23 to FY24"] },
+        "evasion": null,
+        "questionQueue": [
+          "On the LTM EBITDA — that $600mm, as of what date is that?",
+          "Can we get the full EBITDA adjustment schedule with the roll-off timeline for each line item — and is there a QoE report available?",
+          "On the 400-500bps of margin expansion — this is a straight refi. Do we have colour on what's actually driving that?",
+          "On NRR at 108-110% — if management is projecting 10-12% growth, do we have a bridge for the incremental above what NRR implies?",
+          "Post the transaction — is the company planning to have anything drawn on the revolver?"
+        ],
+        "rulesFired": [
+          { "rule": 1, "label": "LTM date verification" },
+          { "rule": 6, "label": "boilerplate margin flag" },
+          { "rule": 8, "label": "internal calculation" },
+          { "rule": 11, "label": "EBITDA bridge ask" },
+          { "rule": 12, "label": "QoE ask" }
+        ]
+      }
+    },
+    {
+      "seq": 2,
+      "speaker": "LEV FIN",
+      "text": "On the LTM date — that's as of December 2024, so full year actuals. On the EBITDA bridge — we can get you the full adjustment schedule, the major items are integration costs related to the Datto acquisition, some restructuring charges, and stock based compensation. The integration costs were the big driver in FY23 but those have largely rolled off now. We don't have a QoE report on this one — it wasn't commissioned for the refi. On the margin expansion — Thoma Bravo's operational playbook is driving it, workforce optimisation, S&M efficiency, some infrastructure cost reduction. Management is confident in the 400-500bps. On revenue — NRR is 108% and management is projecting 10-12% growth, the incremental is coming from new logo additions and some upsell.",
+      "fallbackOutput": {
+        "askNow": "On the integration costs that have largely rolled off — can we get the full schedule with the roll-off timeline per line item?",
+        "internalCalculation": "LTM December 2024 full-year actuals confirmed. SBC accepted, no challenge. Integration costs 'largely rolled off' is not fully rolled off — remaining quantum unknown. Restructuring: if in both FY23 and FY24, treat as recurring. No QoE — credit team carries full verification burden, higher scrutiny on every add-back. NRR 108% — upsell thesis borderline, needs above 110% to be credible.",
+        "flags": [
+          { "category": "EBITDA", "severity": "yellow", "text": "No QoE commissioned for this refi. Credit team carries full add-back verification burden — higher scrutiny on integration and restructuring." },
+          { "category": "MARGINS", "severity": "yellow", "text": "Workforce optimisation, S&M efficiency, infrastructure cost reduction — all boilerplate. No quantum per line item. Rule 6." }
+        ],
+        "open": { "count": 6, "items": ["Integration cost schedule not received", "Restructuring recurrence unverified", "Margin expansion quantum per driver unknown", "New logo pipeline not evidenced", "Upsell capacity borderline at 108% NRR", "Repayment capacity not calculable"] },
+        "covered": { "count": 4, "items": ["LTM date confirmed — December 2024 actuals", "SBC accepted internally", "Revenue growth bridge given — new logos plus upsell", "No QoE on this transaction — noted"] },
+        "evasion": null,
+        "questionQueue": [
+          "Can we get the full EBITDA adjustment schedule with roll-off timeline — particularly integration and restructuring?",
+          "On the restructuring charges — were those running in both FY23 and FY24 or just FY23?",
+          "On the margin expansion — the breakdown of what each driver contributes, quantum on workforce vs S&M vs infrastructure separately?",
+          "On new logos — data on adds over the last few quarters and what the pipeline looks like?",
+          "On upsell — NRR at 108%, what's driving it and is there capacity to push higher?"
+        ],
+        "rulesFired": [
+          { "rule": 6, "label": "boilerplate margins" },
+          { "rule": 7, "label": "roll-off evidence" },
+          { "rule": 10, "label": "collaborative language" },
+          { "rule": 11, "label": "EBITDA bridge ask" },
+          { "rule": 12, "label": "QoE noted" }
+        ]
+      }
+    },
+    {
+      "seq": 3,
+      "speaker": "LEV FIN",
+      "text": "On the adjustment schedule — we'll get that over to you, the main items beyond SBC are about $25mm of remaining integration costs in FY25 and then that's largely it, restructuring was a FY23 item only. On the margin expansion — workforce optimisation is the biggest driver, call it 200bps, S&M efficiency another 150bps, and infrastructure cost reduction the remaining 100-150bps. On new logos — we've been adding roughly 500-600 new logos per quarter over the last three quarters, pipeline looks strong. On upsell — NRR has been improving, it was 105% eighteen months ago and it's now at 108%, management expects to push that to 112% over the forecast period.",
+      "fallbackOutput": {
+        "askNow": "On the $25mm integration costs remaining in FY25 — what's in there and what gives us confidence that's the last of it?",
+        "internalCalculation": "Restructuring FY23 only — not recurring. Integration costs $25mm remaining in FY25 — verify in sponsor model, not a management estimate. Margin breakdown: workforce 200bps, S&M 150bps, infrastructure 100-150bps — total 450-500bps, still no operational mechanism named per driver. New logos 500-600/quarter — need ASP vs existing base. NRR 105% to 108% to projected 112% — trajectory credible, flag moves red to yellow.",
+        "flags": [
+          { "category": "EBITDA", "severity": "yellow", "text": "$25mm integration costs remaining in FY25 — 'largely it' is not confirmed zero. Verify it is in the sponsor model." },
+          { "category": "MARGINS", "severity": "yellow", "text": "Drivers quantified by bps but no operational mechanism named. 200bps workforce — how many roles, which functions, what timeline?" }
+        ],
+        "open": { "count": 5, "items": ["$25mm integration composition unknown", "Margin mechanisms unnamed", "New logo ASP vs base unknown", "NRR 112% credibility unverified", "Repayment capacity not calculable"] },
+        "covered": { "count": 4, "items": ["Restructuring confirmed FY23 only", "Margin expansion quantified by driver", "New logo velocity 500-600/quarter", "NRR trajectory 105% to 108% to 112%"] },
+        "evasion": null,
+        "questionQueue": [
+          "On the $25mm — what's in there and is that in the sponsor model or a management estimate?",
+          "On workforce optimisation driving 200bps — how many roles, which functions, over what period?",
+          "On S&M efficiency driving 150bps — what's specifically changing in the go-to-market model?",
+          "On new logos — average contract value on wins versus the existing base?",
+          "On NRR getting to 112% — what's the specific mechanism from where we are today?"
+        ],
+        "rulesFired": [
+          { "rule": 6, "label": "margin mechanisms" },
+          { "rule": 7, "label": "sponsor model verify" },
+          { "rule": 8, "label": "NRR assessed internally" },
+          { "rule": 10, "label": "collaborative language" }
+        ]
+      }
+    },
+    {
+      "seq": 4,
+      "speaker": "LEV FIN",
+      "text": "On the $25mm — that is in the sponsor model, it's primarily severance related to the final wave of Datto headcount rationalisation, should be fully done by end of Q2 FY25. On workforce optimisation — Thoma Bravo has identified roughly 8% of the combined headcount as redundant, primarily in G&A and customer support, executed over the next 18 months. On S&M — the efficiency is coming from shifting the sales motion more toward channel partners rather than direct, which carries a lower cost to serve. On new logo ASP — new logos are coming in at roughly 60% of the ARPU of the existing base, so they are dilutive per unit but management expects them to expand over time. On NRR getting to 112% — management is expecting higher tier product migrations to drive that, they launched a new enterprise tier six months ago and early adoption has been encouraging.",
+      "fallbackOutput": {
+        "askNow": "On the new logo ASP at 60% of existing ARPU — do we have data on how quickly prior cohorts expanded toward the base?",
+        "internalCalculation": "$25mm severance in sponsor model — accepted per add-back hierarchy. Workforce 8% headcount, G&A and support, 18 months — named and specific. S&M channel shift directionally credible but execution risk. New logo ASP 60% of existing ARPU — dilutive; revenue growth depends on cohort expansion. Enterprise tier 'encouraging' is not a metric — specific data needed.",
+        "flags": [
+          { "category": "REVENUE", "severity": "yellow", "text": "New logo ASP at 60% of existing base ARPU. Revenue growth depends on cohort expansion toward existing ARPU. Data not yet provided." },
+          { "category": "MARGINS", "severity": "blue", "text": "S&M channel shift execution risk not yet assessed — channel shifts historically take longer than modelled." }
+        ],
+        "open": { "count": 4, "items": ["Cohort expansion data not provided", "Enterprise tier metrics not quantified", "Channel shift execution risk not assessed", "Repayment capacity not calculable"] },
+        "covered": { "count": 5, "items": ["$25mm severance in sponsor model", "Workforce 8% headcount over 18 months", "S&M mechanism — channel shift to partner model", "New logo ASP at 60% of existing ARPU", "Enterprise tier launched 6 months ago"] },
+        "evasion": null,
+        "questionQueue": [
+          "On cohort expansion — data on how quickly prior cohorts moved toward existing base ARPU?",
+          "On the enterprise tier — any early metrics, how many customers migrated and revenue contribution?",
+          "On the channel shift — what percentage of new bookings come through channel today versus direct?",
+          "On repayment — can we get the sponsor model FCF build to run the seven-year levered FCF?"
+        ],
+        "rulesFired": [
+          { "rule": 5, "label": "acquisition track record" },
+          { "rule": 6, "label": "margin mechanisms" },
+          { "rule": 8, "label": "internal calculation" },
+          { "rule": 13, "label": "push anyway" }
+        ]
+      }
+    },
+    {
+      "seq": 5,
+      "speaker": "LEV FIN",
+      "text": "On the year by year FCF — year one $180mm, year two $210mm, year three $230mm, year four $250mm, year five $270mm, year six $300mm, year seven $380mm. Cumulative $1.82bn. On the exit — management and Insight are expecting a dual track process, either IPO or strategic sale, targeting year five or six. On the channel economics — a channel sale carries roughly 15-20% lower gross margin versus direct but the volume more than offsets it in management's view. On the cohort data — we'll have that for you by end of week.",
+      "fallbackOutput": {
+        "askNow": "On the de-leveraging — what's driving the leverage reduction? What does net leverage look like at year three and year five?",
+        "internalCalculation": "Cumulative 7-year levered FCF $1.82bn ÷ $4.2bn = 43% — FAILS the 50% Goldman standard. Back-weighting: years 1-3 $620mm = 34%, years 4-7 $1.2bn = 66% — above 60% threshold, fires independently. Channel 15-20% gross margin dilution may partially offset 150bps S&M efficiency — net margin expansion needs stress testing. Exit dependency: dual track IPO or sale year 5-6 — an exit story, not organic deleveraging.",
+        "flags": [
+          { "category": "REPAYMENT", "severity": "red", "text": "50% repayment test FAILS. $1.82bn ÷ $4.2bn = 43%. Structural — lenders dependent on an exit event for liquidity." },
+          { "category": "REPAYMENT", "severity": "red", "text": "Back-weighting confirmed. Years 4-7 = 66% of cumulative FCF. Fires independently." },
+          { "category": "STRUCTURE", "severity": "yellow", "text": "Channel gross margin dilution not netted out of S&M efficiency gain. Net margin expansion overstated." }
+        ],
+        "open": { "count": 3, "items": ["Cohort data pending", "De-leveraging story not explained", "Net margin expansion not stress tested"] },
+        "covered": { "count": 4, "items": ["Year-by-year FCF confirmed", "Cumulative 7-year FCF $1.82bn", "Repayment 43% — FAILS", "Exit — dual track IPO or sale year 5-6"] },
+        "evasion": null,
+        "questionQueue": [
+          "On the de-leveraging — what's driving the reduction? Net leverage at year three and year five?",
+          "On the channel gross margin — has the dilution been netted out of the 150bps S&M efficiency in the model?",
+          "On the cohort data — end of week works. Can you also send the full sponsor model?"
+        ],
+        "rulesFired": [
+          { "rule": 8, "label": "internal calculation" },
+          { "rule": 10, "label": "collaborative language" },
+          { "rule": 13, "label": "push anyway" },
+          { "rule": 14, "label": "cumulative repayment" }
+        ]
+      }
+    },
+    {
+      "seq": 6,
+      "speaker": "LEV FIN",
+      "text": "On the de-leveraging — net leverage goes from 7x at close to approximately 5.2x by year three and 3.8x by year five. The primary driver is EBITDA growth rather than debt paydown — mandatory amortisation is 1% per year on the term loan. On the channel gross margin — yes those are presented gross, the margin dilution from the channel mix shift has not been explicitly netted out of the S&M efficiency gain in the model. On the sponsor model — we'll get that over to you this week along with the cohort data.",
+      "fallbackOutput": {
+        "askNow": "On the debt paydown — what does the excess cash flow sweep look like? A meaningful ECF mechanism or primarily the 1% mandatory amort?",
+        "internalCalculation": "De-leveraging 7x to 5.2x year 3 to 3.8x year 5 — primary driver EBITDA growth, not debt paydown. Mandatory amort 1% on $4.2bn = $42mm/year, $294mm over 7 years. Remaining de-leveraging is EBITDA growth and exit — confirms exit dependency. Channel gross margin dilution confirmed not netted out — 150bps S&M efficiency overstated on net basis.",
+        "flags": [
+          { "category": "STRUCTURE", "severity": "red", "text": "De-leveraging primarily EBITDA growth, not debt repayment. Mandatory amort only 1%/year ($42mm on $4.2bn). Combined with 43% repayment and 66% back-weighting — lender exit almost entirely dependent on a successful IPO or sale in years 5-6." },
+          { "category": "MARGINS", "severity": "yellow", "text": "Channel gross margin dilution confirmed not netted out of S&M efficiency. 150bps overstated on net basis. Recalculation pending sponsor model." }
+        ],
+        "open": { "count": 2, "items": ["ECF sweep mechanism unknown", "Net margin expansion pending sponsor model"] },
+        "covered": { "count": 4, "items": ["De-leveraging path 7x to 5.2x to 3.8x", "Primary driver EBITDA growth not paydown", "Mandatory amortisation 1%/year", "Sponsor model and cohort data arriving this week"] },
+        "evasion": null,
+        "questionQueue": [
+          "On the debt paydown — what does the ECF sweep look like? Meaningful mechanism or primarily 1% amort?",
+          "On the margin model — once we have the sponsor model we'll want to net channel dilution out of the S&M efficiency. Flagging it as a follow-up."
+        ],
+        "rulesFired": [
+          { "rule": 2, "label": "credit leverage internal" },
+          { "rule": 8, "label": "internal calculation" },
+          { "rule": 10, "label": "collaborative language" },
+          { "rule": 14, "label": "cumulative repayment" }
+        ]
+      }
+    },
+    {
+      "seq": 7,
+      "speaker": "LEV FIN",
+      "text": "On the ECF sweep — there is a 50% excess cash flow sweep with step-downs to 25% at 4.5x and 0% at 4.0x net leverage. On the margin model — we'll flag that to the modelling team and get you a revised schedule that nets out the channel dilution from the S&M efficiency gain. We're coming up on time — any final questions from your side before we wrap?",
+      "fallbackOutput": {
+        "askNow": "Just before we wrap — on PF ratings, where are Moody's and S&P landing, and are those formal or still indicative?",
+        "internalCalculation": "ECF sweep 50%, steps to 25% at 4.5x and 0% at 4.0x. De-leveraging path hits 4.5x around year 3-4 and 4.0x around year 5, so meaningful sweep only years 1-3. Estimated cash debt repayment: mandatory amort $294mm + ECF sweep ~$195mm = ~$489mm ÷ $4.2bn = ~12% actual cash repayment. Rest is EBITDA growth — exit dependency confirmed and deepened.",
+        "flags": [
+          { "category": "STRUCTURE", "severity": "red", "text": "ECF sweep steps to 0% at 4.0x — projected year 5. Meaningful sweep only years 1-3. Actual cash debt repayment ~12% of closing debt. Lender protection from ECF sweep limited and time-bound." }
+        ],
+        "open": { "count": 2, "items": ["PF ratings not yet given", "Revised margin schedule netting channel dilution pending"] },
+        "covered": { "count": 2, "items": ["ECF sweep confirmed — 50%, step-downs 25% at 4.5x, 0% at 4.0x", "Revised margin schedule — modelling team to provide"] },
+        "evasion": null,
+        "questionQueue": [
+          "Just on PF ratings — where are Moody's and S&P landing, formal or indicative?",
+          "On the revised margin schedule — when could you get that over? We'd want it alongside the sponsor model.",
+          "To confirm open items — sponsor model, cohort data, EBITDA adjustment schedule, revised margin schedule all this week?"
+        ],
+        "rulesFired": [
+          { "rule": 2, "label": "credit leverage internal" },
+          { "rule": 8, "label": "internal calculation" },
+          { "rule": 10, "label": "collaborative language" },
+          { "rule": 14, "label": "ECF sweep step-down" }
+        ]
+      }
+    }
+  ],
+  "fallbackDebrief": {
+    "mdSummary": "The deal is a straight refinancing of Kaseya at roughly 7x financing leverage on $600mm of LTM December 2024 adjusted EBITDA. The credit story depends on a normalisation and cloud-upsell thesis, but repayment fails the 50% test at 43% cumulative and is 66% back-weighted into years 4-7. The biggest risk is exit dependency — de-leveraging is almost entirely EBITDA growth, with only about 12% of closing debt actually repaid in cash, leaving lenders reliant on a year 5-6 IPO or sale. Before IC we need the full sponsor model, the EBITDA adjustment schedule with roll-off, and the revised margin schedule netting channel dilution against the S&M efficiency gain.",
+    "icBriefing": {
+      "minute1": "This is a straight refinancing. Insight Partners is refinancing Kaseya's existing private credit stack into the broadly syndicated market — an IT management software business post the Datto acquisition — at roughly 7x. There is no new money and no acquisition; this refi is the story of EBITDA normalising from a 148% adjustment ratio in FY23 to 34% in FY24. Post-transaction financing leverage is about 7x on $600mm of LTM December 2024 EBITDA.",
+      "minute2": "Kaseya has a genuine recurring base with NRR at 108% and improving, new logo velocity of 500-600 per quarter, and a credible integration-cost roll-off with only $25mm of severance remaining in FY25, confirmed in the sponsor model. Stock-based comp is the main permanent add-back and we accept it. The margin expansion story is quantified by driver, and the sponsor has a repeatable operational playbook.",
+      "minute3": "The thing that concerns me most is repayment. Cumulative seven-year levered FCF is $1.82bn against $4.2bn of closing debt — that is 43%, below our 50% threshold, and 66% of it lands in years 4-7. Mandatory amortisation is only 1% a year and the ECF sweep steps to zero at 4.0x by year five, so actual cash debt repayment is only about 12% of closing debt. The rest of the de-leveraging is EBITDA growth, which means lenders are underwriting a year 5-6 exit, not organic paydown.",
+      "minute4": "Beyond that we're watching three things. The 400-500bps of margin expansion presents the channel gross-margin dilution gross — it hasn't been netted out of the S&M efficiency, so net margin expansion is overstated. New logos come in at 60% of existing ARPU, so the revenue thesis depends on cohort expansion we don't yet have data for. And there is no QoE, so the credit team carries the full add-back verification burden.",
+      "minute5": "Before we can recommend approval we need three things: the full sponsor model FCF build so we can finalise the credit case and back-weighting, the full EBITDA adjustment schedule with roll-off per line item, and the revised margin schedule netting channel dilution against the S&M efficiency gain. If repayment still fails after that, this needs structural protection — a tighter ECF sweep in years 1-3 — before we can take it to committee."
+    },
+    "scorecard": {
+      "dimensions": [
+        { "name": "Business quality", "score": 3, "threshold": 3 },
+        { "name": "Sector tailwind", "score": 3, "threshold": 3 },
+        { "name": "EBITDA quality", "score": 2, "threshold": 3 },
+        { "name": "Repayment capacity", "score": 1, "threshold": 3 },
+        { "name": "Leverage and coverage", "score": 2, "threshold": 3 },
+        { "name": "Structural protections", "score": 2, "threshold": 3 },
+        { "name": "Forecast credibility", "score": 2, "threshold": 2 }
+      ],
+      "total": 15,
+      "verdict": "DOES NOT PROCEED"
+    },
+    "metrics": {
+      "ebitdaQuality": "Level 2 — adjustment ratio 34%, normalised from 148% in FY23. No QoE.",
+      "financingLeverage": "7.0x on $600mm LTM Dec-2024 ($4.2bn debt)",
+      "creditLeverage": "Likely >7x once add-backs independently assessed",
+      "repaymentTest": { "status": "FAIL", "detail": "Cumulative 7-year levered FCF $1.82bn ÷ $4.2bn = 43%, below 50% standard. 66% back-weighted to years 4-7." },
+      "forecastHaircut": "TBD pending sponsor model — channel dilution and back-weighted FCF haircut to apply"
+    },
+    "topUnresolvedRed": [
+      "50% repayment test fails at 43% — structural problem, needs resolution before IC",
+      "Back-weighting confirmed 66% years 4-7 — reliance on outer-year assumptions",
+      "Exit dependency — de-leveraging almost entirely EBITDA growth, ~12% actual cash debt repayment"
+    ],
+    "monitoringYellow": [
+      "Margin expansion 400-500bps — channel gross margin dilution not netted out",
+      "New logo ASP at 60% of existing ARPU — revenue growth dependent on cohort expansion",
+      "NRR 112% projection — enterprise tier early stage, not yet meaningful",
+      "Channel shift 30% to 50% in 24 months — execution risk not assessed",
+      "No QoE commissioned — higher scrutiny on every add-back required"
+    ],
+    "escalation": {
+      "tier": "Tier 1 — mid-size PF hold. VP is primary approver.",
+      "toVP": [
+        "Margin expansion channel dilution — review revised schedule",
+        "New logo cohort expansion data — review when received"
+      ],
+      "toILAMD": [
+        "50% repayment test fails at 43% — deal-level concern requiring senior input before IC",
+        "Exit dependency — lender liquidity reliant on year 5-6 IPO or sale"
+      ],
+      "mdAwareness": "Straight refi at 7x, EBITDA normalised but repayment fails at 43% with heavy back-weighting and exit dependency. Structural protection likely required before IC.",
+      "capitalMarketsFlags": []
+    },
+    "followUpEmail": {
+      "subject": "Kaseya Refinancing — Follow-Up Items Before IC",
+      "body": "Thank you for the call today. To finalise our credit assessment ahead of committee, please provide the following:\n\n1. Full sponsor model — FCF build, revenue assumptions, margin walk, and debt schedule. [Recipient: lev fin — by end of week]\n2. Full EBITDA adjustment schedule with roll-off timeline per line item, particularly integration and restructuring. [Recipient: lev fin — by end of week]\n3. Cohort expansion data — how quickly prior new logo cohorts expanded toward existing base ARPU. [Recipient: lev fin — by end of week]\n4. Revised margin schedule netting channel gross margin dilution against the S&M efficiency gain. [Recipient: lev fin modelling team — before IC]\n5. PF ratings from Moody's and S&P, formal or indicative. [Recipient: lev fin — before IC]\n\nAs priority, we would appreciate the sponsor model and the EBITDA adjustment schedule first so we can complete our repayment and credit case work."
+    },
+    "evasionLog": [],
+    "equityCreditNote": "Equity cushion is not the binding issue here — the sponsor retains meaningful skin in the game at current leverage. The alignment risk is the year 5-6 dual-track exit: if the exit fails or is delayed, the lender is left with a credit that de-levers only through EBITDA growth. Recommend a tighter ECF sweep in years 1-3 and a change-of-control covenant before IC."
+  }
+}
