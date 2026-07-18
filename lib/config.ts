@@ -25,17 +25,25 @@ export const hasElevenLabs = Boolean(process.env.ELEVENLABS_API_KEY);
 // Turbo/flash are the low-latency models — best for a live, conversational feel.
 export const ELEVENLABS_MODEL = process.env.ELEVENLABS_MODEL || "eleven_turbo_v2_5";
 export const ELEVENLABS_DEFAULT_VOICE =
-  process.env.ELEVENLABS_VOICE_ID || "21m00Tcm4TlvDq8ikWAM"; // "Rachel" — always available
+  process.env.ELEVENLABS_VOICE_ID || "JBFqnCBsd6RMkjVDRZzb"; // "George" — British male
 
-// Distinct voices per counterparty so the call sounds like several people.
-// Uses ElevenLabs' default public voice library IDs; override any of them by
-// setting ELEVENLABS_VOICE_MAP to a JSON object keyed by speaker.
+// Reading pace. ElevenLabs `speed` is pitch-preserving; valid range 0.7–1.2.
+// Slightly above 1.0 makes the call read a touch faster without sounding rushed.
+export const ELEVENLABS_SPEED = (() => {
+  const v = Number.parseFloat(process.env.ELEVENLABS_SPEED || "1.12");
+  if (Number.isNaN(v)) return 1.12;
+  return Math.min(1.2, Math.max(0.7, v));
+})();
+
+// British-accented voices per counterparty so the call sounds like several
+// British people on the line. All are ElevenLabs default public voice IDs;
+// override any of them via ELEVENLABS_VOICE_MAP (JSON keyed by speaker).
 const DEFAULT_VOICE_MAP: Record<string, string> = {
-  "LEV FIN": "pNInz6obpgDQGcFmaJgB", // Adam — measured, senior
-  SPONSOR: "ErXwobaYiN019PkySvjV", // Antoni — polished sponsor
-  CEO: "TxGEqnHWrfWFTfGW9XjX", // Josh — confident operator
-  MANAGEMENT: "yoZ06aMxZJJ28mfd3POQ", // Sam — steady management voice
-  ANALYST: "21m00Tcm4TlvDq8ikWAM", // Rachel — analyst
+  "LEV FIN": "onwK4e9ZLuTAKqWW03F9", // Daniel — British, authoritative
+  SPONSOR: "JBFqnCBsd6RMkjVDRZzb", // George — British, warm
+  CEO: "onwK4e9ZLuTAKqWW03F9", // Daniel — British, confident
+  MANAGEMENT: "JBFqnCBsd6RMkjVDRZzb", // George — British
+  ANALYST: "onwK4e9ZLuTAKqWW03F9", // Daniel — British
 };
 
 export const ELEVENLABS_VOICES: Record<string, string> = (() => {

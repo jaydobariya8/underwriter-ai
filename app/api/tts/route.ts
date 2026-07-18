@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { ELEVENLABS_MODEL, hasElevenLabs, voiceForSpeaker } from "@/lib/config";
+import { ELEVENLABS_MODEL, ELEVENLABS_SPEED, hasElevenLabs, voiceForSpeaker } from "@/lib/config";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -60,6 +60,7 @@ export async function POST(req: Request) {
             similarity_boost: 0.75,
             style: 0.15,
             use_speaker_boost: true,
+            speed: ELEVENLABS_SPEED,
           },
         }),
       },
