@@ -43,6 +43,11 @@ export function genericFallback(text: string): AgentOutput {
             category: "EVASION",
             severity: "yellow",
             text: "Qualitative comfort language used where a specific number was requested.",
+            rationale:
+              "Comfort words in place of a figure usually mean the number is unflattering or unavailable. Underwriting on qualitative comfort leaves the credit unquantified and the risk unpriced.",
+            suggestedQuestion:
+              "Can we get the specific figure and the source document behind it, rather than the qualitative comfort?",
+            rule: 22,
           },
         ]
       : [],

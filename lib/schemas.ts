@@ -18,9 +18,18 @@ export const AGENT_OUTPUT_SCHEMA = {
         properties: {
           category: { type: "string" },
           severity: { type: "string", enum: ["red", "yellow", "blue"] },
-          text: { type: "string" },
+          text: { type: "string", description: "The observation — what was said or detected." },
+          rationale: {
+            type: "string",
+            description: "Why it matters to the credit — the 'so what' for the analyst.",
+          },
+          suggestedQuestion: {
+            type: "string",
+            description: "One specific question the analyst can ask to resolve this flag.",
+          },
+          rule: { type: "number", description: "Analytical rule number that fired, if applicable." },
         },
-        required: ["category", "severity", "text"],
+        required: ["category", "severity", "text", "rationale", "suggestedQuestion"],
       },
     },
     open: {

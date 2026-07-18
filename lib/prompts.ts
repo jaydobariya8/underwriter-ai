@@ -58,7 +58,7 @@ export function exchangeInstruction(
 
 "${text}"
 
-Produce your live output per the OUTPUT FORMAT — LIVE AGENT DESIGN section and call the emit_agent_output tool. Maintain cumulative state across the whole call: keep the open list, covered list, and evasion tracking consistent with everything said earlier. ASK NOW is always exactly one question in natural spoken English, collaborative register ("we" not "you"), max 15 words. INTERNAL CALCULATION carries the granular arithmetic (the iceberg — depth internally, brevity on the call). Return rulesFired as the rule numbers that fired this exchange, each with a 3-word label.${coveredBlock}`;
+Produce your live output per the OUTPUT FORMAT — LIVE AGENT DESIGN section and call the emit_agent_output tool. Maintain cumulative state across the whole call: keep the open list, covered list, and evasion tracking consistent with everything said earlier. ASK NOW is always exactly one question in natural spoken English, collaborative register ("we" not "you"), max 15 words. INTERNAL CALCULATION carries the granular arithmetic (the iceberg — depth internally, brevity on the call). For EACH flag provide four things so a junior analyst can act without extra context: (1) text — the specific observation; (2) rationale — the "so what", i.e. why it matters to the credit and what it distorts if left unresolved; (3) suggestedQuestion — one precise question the analyst could ask to resolve it; (4) rule — the analytical rule number behind it when one applies. Return rulesFired as the rule numbers that fired this exchange, each with a 3-word label.${coveredBlock}`;
 }
 
 export const DEBRIEF_INSTRUCTION = `The call has ended. Produce the full post-call debrief and call the emit_debrief tool.

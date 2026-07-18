@@ -29,6 +29,12 @@ export interface Flag {
   category: string;
   severity: Severity;
   text: string;
+  /** Why this matters to the credit — the "so what" for the analyst. */
+  rationale?: string;
+  /** A specific question the analyst can ask to resolve the flag. */
+  suggestedQuestion?: string;
+  /** The analytical rule number that fired, if applicable. */
+  rule?: number;
 }
 
 export interface RuleFired {

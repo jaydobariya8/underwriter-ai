@@ -66,11 +66,42 @@
         "askNow": "On the LTM EBITDA — that $600mm, as of what date is that?",
         "internalCalculation": "7x on $600mm = $4.2bn debt. Straight refi — full credit case required (above 4x). Adjustment ratio 34% — Level 2 quality, roll-off schedule needed to verify normalisation. FY23 148% to FY24 34% is a dramatic reduction requiring line-by-line bridge verification pre-call. Margin expansion 400-500bps on a straight refi — above the 100bps/year threshold with no named catalyst yet.",
         "flags": [
-          { "category": "MARGINS", "severity": "yellow", "text": "400-500bps margin expansion on a straight refi — no M&A, nothing structural changing. Above 100bps/year threshold. Named catalyst required." },
-          { "category": "EBITDA", "severity": "yellow", "text": "Adjustment ratio FY23 148% to FY24 34%. Requires line-by-line bridge comparison to verify genuine roll-off, not reclassification." }
+          {
+            "category": "MARGINS",
+            "severity": "yellow",
+            "text": "400-500bps margin expansion on a straight refi — no M&A, nothing structural changing. Above 100bps/year threshold. Named catalyst required.",
+            "rationale": "Margin gains with no M&A or structural change usually mean the base was under-earning or the forecast is aggressive. Unbacked expansion flows straight into out-year EBITDA and understates leverage.",
+            "suggestedQuestion": "Can you name the specific operational driver and quantum behind each 100bps of the margin expansion?",
+            "rule": 6
+          },
+          {
+            "category": "EBITDA",
+            "severity": "yellow",
+            "text": "Adjustment ratio FY23 148% to FY24 34%. Requires line-by-line bridge comparison to verify genuine roll-off, not reclassification.",
+            "rationale": "A swing that large is either genuine roll-off of one-off costs or reclassification. If it's reclassification, 'normalised' EBITDA is overstated and every leverage multiple is understated.",
+            "suggestedQuestion": "Can we get the line-by-line adjustment bridge from FY23 to FY24 with the roll-off schedule?",
+            "rule": 5
+          }
         ],
-        "open": { "count": 7, "items": ["LTM date unverified", "Margin expansion drivers unnamed", "NRR to revenue growth bridge not given", "Add-back schedule not received", "QoE status unknown", "Repayment capacity not calculable", "Revolver draw status unknown"] },
-        "covered": { "count": 2, "items": ["Transaction type — straight refi, no new money", "Normalisation story given FY23 to FY24"] },
+        "open": {
+          "count": 7,
+          "items": [
+            "LTM date unverified",
+            "Margin expansion drivers unnamed",
+            "NRR to revenue growth bridge not given",
+            "Add-back schedule not received",
+            "QoE status unknown",
+            "Repayment capacity not calculable",
+            "Revolver draw status unknown"
+          ]
+        },
+        "covered": {
+          "count": 2,
+          "items": [
+            "Transaction type — straight refi, no new money",
+            "Normalisation story given FY23 to FY24"
+          ]
+        },
         "evasion": null,
         "questionQueue": [
           "On the LTM EBITDA — that $600mm, as of what date is that?",
@@ -80,11 +111,26 @@
           "Post the transaction — is the company planning to have anything drawn on the revolver?"
         ],
         "rulesFired": [
-          { "rule": 1, "label": "LTM date verification" },
-          { "rule": 6, "label": "boilerplate margin flag" },
-          { "rule": 8, "label": "internal calculation" },
-          { "rule": 11, "label": "EBITDA bridge ask" },
-          { "rule": 12, "label": "QoE ask" }
+          {
+            "rule": 1,
+            "label": "LTM date verification"
+          },
+          {
+            "rule": 6,
+            "label": "boilerplate margin flag"
+          },
+          {
+            "rule": 8,
+            "label": "internal calculation"
+          },
+          {
+            "rule": 11,
+            "label": "EBITDA bridge ask"
+          },
+          {
+            "rule": 12,
+            "label": "QoE ask"
+          }
         ]
       }
     },
@@ -96,11 +142,42 @@
         "askNow": "On the integration costs that have largely rolled off — can we get the full schedule with the roll-off timeline per line item?",
         "internalCalculation": "LTM December 2024 full-year actuals confirmed. SBC accepted, no challenge. Integration costs 'largely rolled off' is not fully rolled off — remaining quantum unknown. Restructuring: if in both FY23 and FY24, treat as recurring. No QoE — credit team carries full verification burden, higher scrutiny on every add-back. NRR 108% — upsell thesis borderline, needs above 110% to be credible.",
         "flags": [
-          { "category": "EBITDA", "severity": "yellow", "text": "No QoE commissioned for this refi. Credit team carries full add-back verification burden — higher scrutiny on integration and restructuring." },
-          { "category": "MARGINS", "severity": "yellow", "text": "Workforce optimisation, S&M efficiency, infrastructure cost reduction — all boilerplate. No quantum per line item. Rule 6." }
+          {
+            "category": "EBITDA",
+            "severity": "yellow",
+            "text": "No QoE commissioned for this refi. Credit team carries full add-back verification burden — higher scrutiny on integration and restructuring.",
+            "rationale": "With no third-party quality-of-earnings report the credit team owns all add-back verification. Unverified integration and restructuring add-backs are where EBITDA is most often overstated.",
+            "suggestedQuestion": "Can you commission a QoE, or share the underlying support for the integration and restructuring add-backs?"
+          },
+          {
+            "category": "MARGINS",
+            "severity": "yellow",
+            "text": "Workforce optimisation, S&M efficiency, infrastructure cost reduction — all boilerplate. No quantum per line item. Rule 6.",
+            "rationale": "Generic playbook labels with no quantum can't be underwritten. Without per-line-item sizing the margin bridge is an assertion, not a forecast.",
+            "suggestedQuestion": "How many basis points does each of workforce, S&M and infrastructure contribute, and over what timeline?",
+            "rule": 6
+          }
         ],
-        "open": { "count": 6, "items": ["Integration cost schedule not received", "Restructuring recurrence unverified", "Margin expansion quantum per driver unknown", "New logo pipeline not evidenced", "Upsell capacity borderline at 108% NRR", "Repayment capacity not calculable"] },
-        "covered": { "count": 4, "items": ["LTM date confirmed — December 2024 actuals", "SBC accepted internally", "Revenue growth bridge given — new logos plus upsell", "No QoE on this transaction — noted"] },
+        "open": {
+          "count": 6,
+          "items": [
+            "Integration cost schedule not received",
+            "Restructuring recurrence unverified",
+            "Margin expansion quantum per driver unknown",
+            "New logo pipeline not evidenced",
+            "Upsell capacity borderline at 108% NRR",
+            "Repayment capacity not calculable"
+          ]
+        },
+        "covered": {
+          "count": 4,
+          "items": [
+            "LTM date confirmed — December 2024 actuals",
+            "SBC accepted internally",
+            "Revenue growth bridge given — new logos plus upsell",
+            "No QoE on this transaction — noted"
+          ]
+        },
         "evasion": null,
         "questionQueue": [
           "Can we get the full EBITDA adjustment schedule with roll-off timeline — particularly integration and restructuring?",
@@ -110,11 +187,26 @@
           "On upsell — NRR at 108%, what's driving it and is there capacity to push higher?"
         ],
         "rulesFired": [
-          { "rule": 6, "label": "boilerplate margins" },
-          { "rule": 7, "label": "roll-off evidence" },
-          { "rule": 10, "label": "collaborative language" },
-          { "rule": 11, "label": "EBITDA bridge ask" },
-          { "rule": 12, "label": "QoE noted" }
+          {
+            "rule": 6,
+            "label": "boilerplate margins"
+          },
+          {
+            "rule": 7,
+            "label": "roll-off evidence"
+          },
+          {
+            "rule": 10,
+            "label": "collaborative language"
+          },
+          {
+            "rule": 11,
+            "label": "EBITDA bridge ask"
+          },
+          {
+            "rule": 12,
+            "label": "QoE noted"
+          }
         ]
       }
     },
@@ -126,11 +218,41 @@
         "askNow": "On the $25mm integration costs remaining in FY25 — what's in there and what gives us confidence that's the last of it?",
         "internalCalculation": "Restructuring FY23 only — not recurring. Integration costs $25mm remaining in FY25 — verify in sponsor model, not a management estimate. Margin breakdown: workforce 200bps, S&M 150bps, infrastructure 100-150bps — total 450-500bps, still no operational mechanism named per driver. New logos 500-600/quarter — need ASP vs existing base. NRR 105% to 108% to projected 112% — trajectory credible, flag moves red to yellow.",
         "flags": [
-          { "category": "EBITDA", "severity": "yellow", "text": "$25mm integration costs remaining in FY25 — 'largely it' is not confirmed zero. Verify it is in the sponsor model." },
-          { "category": "MARGINS", "severity": "yellow", "text": "Drivers quantified by bps but no operational mechanism named. 200bps workforce — how many roles, which functions, what timeline?" }
+          {
+            "category": "EBITDA",
+            "severity": "yellow",
+            "text": "$25mm integration costs remaining in FY25 — 'largely it' is not confirmed zero. Verify it is in the sponsor model.",
+            "rationale": "'Largely it' leaves the tail of add-backs unconfirmed. If integration cost persists past FY25, the roll-off story and normalised EBITDA are overstated.",
+            "suggestedQuestion": "Is the $25mm the full remaining integration cost, and is it explicitly carried in the sponsor model?"
+          },
+          {
+            "category": "MARGINS",
+            "severity": "yellow",
+            "text": "Drivers quantified by bps but no operational mechanism named. 200bps workforce — how many roles, which functions, what timeline?",
+            "rationale": "Basis points without a mechanism (headcount, functions, timeline) can't be validated or stress-tested. The number is only as good as the operational plan behind it.",
+            "suggestedQuestion": "For the 200bps of workforce optimisation — how many roles, which functions, and over what period?",
+            "rule": 6
+          }
         ],
-        "open": { "count": 5, "items": ["$25mm integration composition unknown", "Margin mechanisms unnamed", "New logo ASP vs base unknown", "NRR 112% credibility unverified", "Repayment capacity not calculable"] },
-        "covered": { "count": 4, "items": ["Restructuring confirmed FY23 only", "Margin expansion quantified by driver", "New logo velocity 500-600/quarter", "NRR trajectory 105% to 108% to 112%"] },
+        "open": {
+          "count": 5,
+          "items": [
+            "$25mm integration composition unknown",
+            "Margin mechanisms unnamed",
+            "New logo ASP vs base unknown",
+            "NRR 112% credibility unverified",
+            "Repayment capacity not calculable"
+          ]
+        },
+        "covered": {
+          "count": 4,
+          "items": [
+            "Restructuring confirmed FY23 only",
+            "Margin expansion quantified by driver",
+            "New logo velocity 500-600/quarter",
+            "NRR trajectory 105% to 108% to 112%"
+          ]
+        },
         "evasion": null,
         "questionQueue": [
           "On the $25mm — what's in there and is that in the sponsor model or a management estimate?",
@@ -140,10 +262,22 @@
           "On NRR getting to 112% — what's the specific mechanism from where we are today?"
         ],
         "rulesFired": [
-          { "rule": 6, "label": "margin mechanisms" },
-          { "rule": 7, "label": "sponsor model verify" },
-          { "rule": 8, "label": "NRR assessed internally" },
-          { "rule": 10, "label": "collaborative language" }
+          {
+            "rule": 6,
+            "label": "margin mechanisms"
+          },
+          {
+            "rule": 7,
+            "label": "sponsor model verify"
+          },
+          {
+            "rule": 8,
+            "label": "NRR assessed internally"
+          },
+          {
+            "rule": 10,
+            "label": "collaborative language"
+          }
         ]
       }
     },
@@ -155,11 +289,41 @@
         "askNow": "On the new logo ASP at 60% of existing ARPU — do we have data on how quickly prior cohorts expanded toward the base?",
         "internalCalculation": "$25mm severance in sponsor model — accepted per add-back hierarchy. Workforce 8% headcount, G&A and support, 18 months — named and specific. S&M channel shift directionally credible but execution risk. New logo ASP 60% of existing ARPU — dilutive; revenue growth depends on cohort expansion. Enterprise tier 'encouraging' is not a metric — specific data needed.",
         "flags": [
-          { "category": "REVENUE", "severity": "yellow", "text": "New logo ASP at 60% of existing base ARPU. Revenue growth depends on cohort expansion toward existing ARPU. Data not yet provided." },
-          { "category": "MARGINS", "severity": "blue", "text": "S&M channel shift execution risk not yet assessed — channel shifts historically take longer than modelled." }
+          {
+            "category": "REVENUE",
+            "severity": "yellow",
+            "text": "New logo ASP at 60% of existing base ARPU. Revenue growth depends on cohort expansion toward existing ARPU. Data not yet provided.",
+            "rationale": "If new logos land at 60% ARPU, headline growth relies on those cohorts expanding toward the base. Without cohort expansion data the 10-12% growth is unsupported and dilutive to blended ARPU.",
+            "suggestedQuestion": "Can you share the cohort ARPU expansion curve for new logos over the last 8-12 quarters?",
+            "rule": 16
+          },
+          {
+            "category": "MARGINS",
+            "severity": "blue",
+            "text": "S&M channel shift execution risk not yet assessed — channel shifts historically take longer than modelled.",
+            "rationale": "Channel shifts usually take longer than modelled and carry lower gross margin. If the shift slips, the S&M efficiency gain and the margin bridge slip with it.",
+            "suggestedQuestion": "What is the historical pace of your direct-to-channel mix shift, and how is the lower channel gross margin reflected?"
+          }
         ],
-        "open": { "count": 4, "items": ["Cohort expansion data not provided", "Enterprise tier metrics not quantified", "Channel shift execution risk not assessed", "Repayment capacity not calculable"] },
-        "covered": { "count": 5, "items": ["$25mm severance in sponsor model", "Workforce 8% headcount over 18 months", "S&M mechanism — channel shift to partner model", "New logo ASP at 60% of existing ARPU", "Enterprise tier launched 6 months ago"] },
+        "open": {
+          "count": 4,
+          "items": [
+            "Cohort expansion data not provided",
+            "Enterprise tier metrics not quantified",
+            "Channel shift execution risk not assessed",
+            "Repayment capacity not calculable"
+          ]
+        },
+        "covered": {
+          "count": 5,
+          "items": [
+            "$25mm severance in sponsor model",
+            "Workforce 8% headcount over 18 months",
+            "S&M mechanism — channel shift to partner model",
+            "New logo ASP at 60% of existing ARPU",
+            "Enterprise tier launched 6 months ago"
+          ]
+        },
         "evasion": null,
         "questionQueue": [
           "On cohort expansion — data on how quickly prior cohorts moved toward existing base ARPU?",
@@ -168,10 +332,22 @@
           "On repayment — can we get the sponsor model FCF build to run the seven-year levered FCF?"
         ],
         "rulesFired": [
-          { "rule": 5, "label": "acquisition track record" },
-          { "rule": 6, "label": "margin mechanisms" },
-          { "rule": 8, "label": "internal calculation" },
-          { "rule": 13, "label": "push anyway" }
+          {
+            "rule": 5,
+            "label": "acquisition track record"
+          },
+          {
+            "rule": 6,
+            "label": "margin mechanisms"
+          },
+          {
+            "rule": 8,
+            "label": "internal calculation"
+          },
+          {
+            "rule": 13,
+            "label": "push anyway"
+          }
         ]
       }
     },
@@ -183,12 +359,45 @@
         "askNow": "On the de-leveraging — what's driving the leverage reduction? What does net leverage look like at year three and year five?",
         "internalCalculation": "Cumulative 7-year levered FCF $1.82bn ÷ $4.2bn = 43% — FAILS the 50% Goldman standard. Back-weighting: years 1-3 $620mm = 34%, years 4-7 $1.2bn = 66% — above 60% threshold, fires independently. Channel 15-20% gross margin dilution may partially offset 150bps S&M efficiency — net margin expansion needs stress testing. Exit dependency: dual track IPO or sale year 5-6 — an exit story, not organic deleveraging.",
         "flags": [
-          { "category": "REPAYMENT", "severity": "red", "text": "50% repayment test FAILS. $1.82bn ÷ $4.2bn = 43%. Structural — lenders dependent on an exit event for liquidity." },
-          { "category": "REPAYMENT", "severity": "red", "text": "Back-weighting confirmed. Years 4-7 = 66% of cumulative FCF. Fires independently." },
-          { "category": "STRUCTURE", "severity": "yellow", "text": "Channel gross margin dilution not netted out of S&M efficiency gain. Net margin expansion overstated." }
+          {
+            "category": "REPAYMENT",
+            "severity": "red",
+            "text": "50% repayment test FAILS. $1.82bn ÷ $4.2bn = 43%. Structural — lenders dependent on an exit event for liquidity.",
+            "rationale": "Below 50% cumulative repayment, lenders are not materially repaid from cash flow over the hold — they depend on a refinancing or exit event for liquidity, a structural credit weakness.",
+            "suggestedQuestion": "Absent an exit, what is the refinancing plan and expected leverage at maturity if the IPO or sale slips?"
+          },
+          {
+            "category": "REPAYMENT",
+            "severity": "red",
+            "text": "Back-weighting confirmed. Years 4-7 = 66% of cumulative FCF. Fires independently.",
+            "rationale": "Cash flow concentrated in the back half means early-year cushion is thin and the whole case leans on the least predictable, furthest-out forecasts.",
+            "suggestedQuestion": "What do coverage and repayment look like if years 4-7 free cash flow is haircut 20%?"
+          },
+          {
+            "category": "STRUCTURE",
+            "severity": "yellow",
+            "text": "Channel gross margin dilution not netted out of S&M efficiency gain. Net margin expansion overstated.",
+            "rationale": "If channel dilution isn't netted against the S&M saving, net margin expansion — and therefore out-year EBITDA and leverage — is overstated.",
+            "suggestedQuestion": "Can you provide the margin bridge net of channel gross-margin dilution?"
+          }
         ],
-        "open": { "count": 3, "items": ["Cohort data pending", "De-leveraging story not explained", "Net margin expansion not stress tested"] },
-        "covered": { "count": 4, "items": ["Year-by-year FCF confirmed", "Cumulative 7-year FCF $1.82bn", "Repayment 43% — FAILS", "Exit — dual track IPO or sale year 5-6"] },
+        "open": {
+          "count": 3,
+          "items": [
+            "Cohort data pending",
+            "De-leveraging story not explained",
+            "Net margin expansion not stress tested"
+          ]
+        },
+        "covered": {
+          "count": 4,
+          "items": [
+            "Year-by-year FCF confirmed",
+            "Cumulative 7-year FCF $1.82bn",
+            "Repayment 43% — FAILS",
+            "Exit — dual track IPO or sale year 5-6"
+          ]
+        },
         "evasion": null,
         "questionQueue": [
           "On the de-leveraging — what's driving the reduction? Net leverage at year three and year five?",
@@ -196,10 +405,22 @@
           "On the cohort data — end of week works. Can you also send the full sponsor model?"
         ],
         "rulesFired": [
-          { "rule": 8, "label": "internal calculation" },
-          { "rule": 10, "label": "collaborative language" },
-          { "rule": 13, "label": "push anyway" },
-          { "rule": 14, "label": "cumulative repayment" }
+          {
+            "rule": 8,
+            "label": "internal calculation"
+          },
+          {
+            "rule": 10,
+            "label": "collaborative language"
+          },
+          {
+            "rule": 13,
+            "label": "push anyway"
+          },
+          {
+            "rule": 14,
+            "label": "cumulative repayment"
+          }
         ]
       }
     },
@@ -211,21 +432,59 @@
         "askNow": "On the debt paydown — what does the excess cash flow sweep look like? A meaningful ECF mechanism or primarily the 1% mandatory amort?",
         "internalCalculation": "De-leveraging 7x to 5.2x year 3 to 3.8x year 5 — primary driver EBITDA growth, not debt paydown. Mandatory amort 1% on $4.2bn = $42mm/year, $294mm over 7 years. Remaining de-leveraging is EBITDA growth and exit — confirms exit dependency. Channel gross margin dilution confirmed not netted out — 150bps S&M efficiency overstated on net basis.",
         "flags": [
-          { "category": "STRUCTURE", "severity": "red", "text": "De-leveraging primarily EBITDA growth, not debt repayment. Mandatory amort only 1%/year ($42mm on $4.2bn). Combined with 43% repayment and 66% back-weighting — lender exit almost entirely dependent on a successful IPO or sale in years 5-6." },
-          { "category": "MARGINS", "severity": "yellow", "text": "Channel gross margin dilution confirmed not netted out of S&M efficiency. 150bps overstated on net basis. Recalculation pending sponsor model." }
+          {
+            "category": "STRUCTURE",
+            "severity": "red",
+            "text": "De-leveraging primarily EBITDA growth, not debt repayment. Mandatory amort only 1%/year ($42mm on $4.2bn). Combined with 43% repayment and 66% back-weighting — lender exit almost entirely dependent on a successful IPO or sale in years 5-6.",
+            "rationale": "If de-levering comes from EBITDA growth rather than paydown (amort only 1%/yr), the credit only works if the growth forecast is right. Combined with the failed repayment test, the lender's exit depends almost entirely on a successful IPO or sale.",
+            "suggestedQuestion": "What is the deleveraging path if EBITDA growth is half of plan and there is no exit by year six?"
+          },
+          {
+            "category": "MARGINS",
+            "severity": "yellow",
+            "text": "Channel gross margin dilution confirmed not netted out of S&M efficiency. 150bps overstated on net basis. Recalculation pending sponsor model.",
+            "rationale": "A confirmed ~150bps overstatement means the net margin bridge and every out-year EBITDA figure need recalculation before the credit case is reliable.",
+            "suggestedQuestion": "Can the modelling team reissue the schedule netting the ~150bps of channel dilution?"
+          }
         ],
-        "open": { "count": 2, "items": ["ECF sweep mechanism unknown", "Net margin expansion pending sponsor model"] },
-        "covered": { "count": 4, "items": ["De-leveraging path 7x to 5.2x to 3.8x", "Primary driver EBITDA growth not paydown", "Mandatory amortisation 1%/year", "Sponsor model and cohort data arriving this week"] },
+        "open": {
+          "count": 2,
+          "items": [
+            "ECF sweep mechanism unknown",
+            "Net margin expansion pending sponsor model"
+          ]
+        },
+        "covered": {
+          "count": 4,
+          "items": [
+            "De-leveraging path 7x to 5.2x to 3.8x",
+            "Primary driver EBITDA growth not paydown",
+            "Mandatory amortisation 1%/year",
+            "Sponsor model and cohort data arriving this week"
+          ]
+        },
         "evasion": null,
         "questionQueue": [
           "On the debt paydown — what does the ECF sweep look like? Meaningful mechanism or primarily 1% amort?",
           "On the margin model — once we have the sponsor model we'll want to net channel dilution out of the S&M efficiency. Flagging it as a follow-up."
         ],
         "rulesFired": [
-          { "rule": 2, "label": "credit leverage internal" },
-          { "rule": 8, "label": "internal calculation" },
-          { "rule": 10, "label": "collaborative language" },
-          { "rule": 14, "label": "cumulative repayment" }
+          {
+            "rule": 2,
+            "label": "credit leverage internal"
+          },
+          {
+            "rule": 8,
+            "label": "internal calculation"
+          },
+          {
+            "rule": 10,
+            "label": "collaborative language"
+          },
+          {
+            "rule": 14,
+            "label": "cumulative repayment"
+          }
         ]
       }
     },
@@ -237,10 +496,28 @@
         "askNow": "Just before we wrap — on PF ratings, where are Moody's and S&P landing, and are those formal or still indicative?",
         "internalCalculation": "ECF sweep 50%, steps to 25% at 4.5x and 0% at 4.0x. De-leveraging path hits 4.5x around year 3-4 and 4.0x around year 5, so meaningful sweep only years 1-3. Estimated cash debt repayment: mandatory amort $294mm + ECF sweep ~$195mm = ~$489mm ÷ $4.2bn = ~12% actual cash repayment. Rest is EBITDA growth — exit dependency confirmed and deepened.",
         "flags": [
-          { "category": "STRUCTURE", "severity": "red", "text": "ECF sweep steps to 0% at 4.0x — projected year 5. Meaningful sweep only years 1-3. Actual cash debt repayment ~12% of closing debt. Lender protection from ECF sweep limited and time-bound." }
+          {
+            "category": "STRUCTURE",
+            "severity": "red",
+            "text": "ECF sweep steps to 0% at 4.0x — projected year 5. Meaningful sweep only years 1-3. Actual cash debt repayment ~12% of closing debt. Lender protection from ECF sweep limited and time-bound.",
+            "rationale": "A sweep that zeroes at 4.0x (hit by year 5) only bites in years 1-3, so contractual cash repayment is ~12% of debt. The ECF protection lenders count on is limited and time-bound.",
+            "suggestedQuestion": "Can we model actual cash debt repayment from the sweep given the step-downs, and hold the 0% step at a lower leverage?"
+          }
         ],
-        "open": { "count": 2, "items": ["PF ratings not yet given", "Revised margin schedule netting channel dilution pending"] },
-        "covered": { "count": 2, "items": ["ECF sweep confirmed — 50%, step-downs 25% at 4.5x, 0% at 4.0x", "Revised margin schedule — modelling team to provide"] },
+        "open": {
+          "count": 2,
+          "items": [
+            "PF ratings not yet given",
+            "Revised margin schedule netting channel dilution pending"
+          ]
+        },
+        "covered": {
+          "count": 2,
+          "items": [
+            "ECF sweep confirmed — 50%, step-downs 25% at 4.5x, 0% at 4.0x",
+            "Revised margin schedule — modelling team to provide"
+          ]
+        },
         "evasion": null,
         "questionQueue": [
           "Just on PF ratings — where are Moody's and S&P landing, formal or indicative?",
@@ -248,10 +525,22 @@
           "To confirm open items — sponsor model, cohort data, EBITDA adjustment schedule, revised margin schedule all this week?"
         ],
         "rulesFired": [
-          { "rule": 2, "label": "credit leverage internal" },
-          { "rule": 8, "label": "internal calculation" },
-          { "rule": 10, "label": "collaborative language" },
-          { "rule": 14, "label": "ECF sweep step-down" }
+          {
+            "rule": 2,
+            "label": "credit leverage internal"
+          },
+          {
+            "rule": 8,
+            "label": "internal calculation"
+          },
+          {
+            "rule": 10,
+            "label": "collaborative language"
+          },
+          {
+            "rule": 14,
+            "label": "ECF sweep step-down"
+          }
         ]
       }
     }
@@ -267,13 +556,41 @@
     },
     "scorecard": {
       "dimensions": [
-        { "name": "Business quality", "score": 3, "threshold": 3 },
-        { "name": "Sector tailwind", "score": 3, "threshold": 3 },
-        { "name": "EBITDA quality", "score": 2, "threshold": 3 },
-        { "name": "Repayment capacity", "score": 1, "threshold": 3 },
-        { "name": "Leverage and coverage", "score": 2, "threshold": 3 },
-        { "name": "Structural protections", "score": 2, "threshold": 3 },
-        { "name": "Forecast credibility", "score": 2, "threshold": 2 }
+        {
+          "name": "Business quality",
+          "score": 3,
+          "threshold": 3
+        },
+        {
+          "name": "Sector tailwind",
+          "score": 3,
+          "threshold": 3
+        },
+        {
+          "name": "EBITDA quality",
+          "score": 2,
+          "threshold": 3
+        },
+        {
+          "name": "Repayment capacity",
+          "score": 1,
+          "threshold": 3
+        },
+        {
+          "name": "Leverage and coverage",
+          "score": 2,
+          "threshold": 3
+        },
+        {
+          "name": "Structural protections",
+          "score": 2,
+          "threshold": 3
+        },
+        {
+          "name": "Forecast credibility",
+          "score": 2,
+          "threshold": 2
+        }
       ],
       "total": 15,
       "verdict": "DOES NOT PROCEED"
@@ -282,7 +599,10 @@
       "ebitdaQuality": "Level 2 — adjustment ratio 34%, normalised from 148% in FY23. No QoE.",
       "financingLeverage": "7.0x on $600mm LTM Dec-2024 ($4.2bn debt)",
       "creditLeverage": "Likely >7x once add-backs independently assessed",
-      "repaymentTest": { "status": "FAIL", "detail": "Cumulative 7-year levered FCF $1.82bn ÷ $4.2bn = 43%, below 50% standard. 66% back-weighted to years 4-7." },
+      "repaymentTest": {
+        "status": "FAIL",
+        "detail": "Cumulative 7-year levered FCF $1.82bn ÷ $4.2bn = 43%, below 50% standard. 66% back-weighted to years 4-7."
+      },
       "forecastHaircut": "TBD pending sponsor model — channel dilution and back-weighted FCF haircut to apply"
     },
     "topUnresolvedRed": [
