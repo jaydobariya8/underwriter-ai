@@ -164,7 +164,7 @@ export default async function DashboardPage() {
             <KpiCard
               index={3}
               icon={<IconScale width={16} height={16} />}
-              label="Avg credit leverage"
+              label="Credit leverage"
               value={s.avgCreditLeverage ? `${s.avgCreditLeverage}x` : "—"}
               sub={`across ${s.debriefCount} debrief${s.debriefCount === 1 ? "" : "s"}`}
               accent="amber"
