@@ -146,7 +146,7 @@ export function AgentOutputPanel({ output, dealId }: { output: AgentOutput; deal
                   {output.rulesFired.map((r, i) => (
                     <span
                       key={`${r.rule}-${i}`}
-                      className="mono rounded border border-border bg-panel-2 px-1.5 py-0.5 text-[11px] text-text-2"
+                      className="rounded border border-border bg-panel-2 px-1.5 py-0.5 text-[11px] text-text-2"
                     >
                       R{r.rule} · {r.label}
                     </span>

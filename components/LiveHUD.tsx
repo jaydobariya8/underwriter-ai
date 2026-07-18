@@ -336,7 +336,7 @@ export function LiveHUD({ dealId, header, scriptedLines, initialExchanges, voice
           allRules.map((r, i) => (
             <span
               key={i}
-              className="mono rounded border border-border bg-panel-2 px-2 py-0.5 text-[11px] text-gold"
+              className="rounded border border-border bg-panel-2 px-2 py-0.5 text-[11px] text-gold"
             >
               {r}
             </span>
