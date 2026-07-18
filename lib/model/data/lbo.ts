@@ -28,7 +28,7 @@ export const LBO_MODEL: ModelBundle = {
   sponsor: {
     revenue: [667, 747, 837, 937, 1050, 1176, 1317],
     adjEbitda: [200, 224, 251, 281, 315, 352, 395],
-    reportedEbitda: [190, 213, 239, 267, 299, 335, 375],
+    reportedEbitda: [95, 213, 239, 267, 299, 335, 375],
     interest: [85, 85, 85, 85, 85, 85, 85],
     leveredFcf: [53, 78, 105, 130, 155, 168, 180],
     mandatoryAmort: [11, 11, 11, 11, 11, 11, 11],
@@ -139,7 +139,7 @@ export const LBO_MODEL: ModelBundle = {
     missPct: [-0.022, -0.043, -0.042, -0.041, -0.039, -0.057, -0.055, -0.053],
   },
   notes: [
-    "No QoE on this transaction — management accounts reviewed by the sponsor only. EBITDA quality remains Level 1 until independently verified.",
+    "No QoE on this transaction — management accounts reviewed by the sponsor only. The 110% adjustment ratio is Level 4 and requires maximum challenge until independently verified.",
     "Revenue base, tax, capex and NWC splits are analyst-inferred to foot to the sponsor-stated FCF path and 7.0x entry leverage.",
     "RCF assumed undrawn at close.",
     "Credit case (default) = expense R&D + correct SOFR. Toggle the WC and migration adjustments to stress further.",

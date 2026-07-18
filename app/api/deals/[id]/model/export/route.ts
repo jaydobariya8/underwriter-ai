@@ -1,13 +1,19 @@
 import ExcelJS from "exceljs";
 import { getDeal } from "@/lib/db";
-import { computeModel, defaultCreditIds, getModelBundle, MODEL_YEARS } from "@/lib/model";
+import {
+  computeModel,
+  getModelBundle,
+  MODEL_YEARS,
+  parseModelState,
+  scaleModelBundle,
+} from "@/lib/model";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const YEARS = Array.from({ length: MODEL_YEARS }, (_, i) => `FY${i + 1}`);
 
-export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const deal = await getDeal(id);
   if (!deal) return new Response("Deal not found", { status: 404 });
@@ -15,8 +21,10 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   const bundle = getModelBundle(deal.scenario_key);
   if (!bundle) return new Response("No model attached to this deal", { status: 404 });
 
+  const state = parseModelState(new URL(req.url).searchParams, bundle);
+  const scaledBundle = scaleModelBundle(bundle, state.scales);
   const sponsor = computeModel(bundle, []);
-  const credit = computeModel(bundle, defaultCreditIds(bundle));
+  const credit = computeModel(scaledBundle, state.enabledIds);
 
   const wb = new ExcelJS.Workbook();
   wb.creator = "Underwriter.AI";
@@ -46,9 +54,23 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   header(summary.addRow(["Metric", "Sponsor case", "Credit case", "Note"]));
   const sPass = (r: typeof sponsor) => (r.repaymentPass ? "PASS" : "FAIL");
   const rows: (string | number)[][] = [
-    ["Adjusted EBITDA (FY1)", sponsor.leverageEbitda[0], credit.leverageEbitda[0], "Credit expenses non-recurring add-backs"],
+    [
+      "Adjusted EBITDA (FY1)",
+      sponsor.leverageEbitda[0],
+      credit.leverageEbitda[0],
+      credit.leverageEbitda[0] < sponsor.leverageEbitda[0]
+        ? "Analyst EBITDA adjustments applied"
+        : "No EBITDA adjustment applied",
+    ],
     ["Entry leverage (x)", +sponsor.entryLeverage.toFixed(2), +credit.entryLeverage.toFixed(2), "Debt at close / adj. EBITDA"],
-    ["FY1 cash interest", sponsor.interest[0], credit.interest[0], "Credit corrects rate assumptions"],
+    [
+      "FY1 cash interest",
+      sponsor.interest[0],
+      credit.interest[0],
+      credit.interest[0] > sponsor.interest[0]
+        ? "Analyst interest corrections applied"
+        : "No interest correction applied",
+    ],
     ["FY1 interest coverage (x)", +sponsor.entryCoverage.toFixed(2), +credit.entryCoverage.toFixed(2), "EBITDA / interest"],
     ["Cumulative 7-yr FCF", sponsor.cumFcf, credit.cumFcf, "Sum of levered FCF"],
     ["50% repayment test (%)", +(sponsor.repaymentCapacity * 100).toFixed(1), +(credit.repaymentCapacity * 100).toFixed(1), `${sPass(sponsor)} vs ${sPass(credit)}`],

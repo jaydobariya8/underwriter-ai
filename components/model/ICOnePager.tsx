@@ -2,7 +2,12 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { computeModel, defaultCreditIds, type ModelBundle } from "@/lib/model";
+import {
+  computeModel,
+  encodeModelState,
+  scaleModelBundle,
+  type ModelBundle,
+} from "@/lib/model";
 
 const money = (n: number) => `$${Math.round(n).toLocaleString()}`;
 const x = (n: number) => `${n.toFixed(1)}x`;
@@ -12,13 +17,25 @@ export function ICOnePager({
   bundle,
   dealId,
   dealName,
+  enabledIds,
+  scales,
 }: {
   bundle: ModelBundle;
   dealId: string;
   dealName: string;
+  enabledIds: string[];
+  scales: Record<string, number>;
 }) {
   const sponsor = useMemo(() => computeModel(bundle, []), [bundle]);
-  const credit = useMemo(() => computeModel(bundle, defaultCreditIds(bundle)), [bundle]);
+  const scaled = useMemo(() => scaleModelBundle(bundle, scales), [bundle, scales]);
+  const credit = useMemo(
+    () => computeModel(scaled, enabledIds),
+    [scaled, enabledIds],
+  );
+  const modelStateQuery = useMemo(
+    () => encodeModelState(enabledIds, scales),
+    [enabledIds, scales],
+  );
 
   const sponsorProceed = sponsor.repaymentPass && sponsor.entryCoverage >= 1.5;
   const creditProceed = credit.repaymentPass && credit.entryCoverage >= 1.5;
@@ -43,7 +60,10 @@ export function ICOnePager({
     <div className="mx-auto max-w-[900px]">
       {/* controls (not printed) */}
       <div className="print-hide mb-4 flex items-center justify-between">
-        <Link href={`/deals/${dealId}/model`} className="text-sm text-text-2 hover:text-text">
+        <Link
+          href={`/deals/${dealId}/model?${modelStateQuery}`}
+          className="text-sm text-text-2 hover:text-text"
+        >
           ← Back to model
         </Link>
         <button

@@ -4,8 +4,9 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   computeModel,
-  defaultCreditIds,
+  encodeModelState,
   MODEL_YEARS,
+  scaleModelBundle,
   type ModelBundle,
   type ResolvedModel,
 } from "@/lib/model";
@@ -17,19 +18,6 @@ const pct0 = (n: number) => `${(n * 100).toFixed(0)}%`;
 const YEARS = Array.from({ length: MODEL_YEARS }, (_, i) => `FY${i + 1}`);
 
 type View = "compare" | "sponsor" | "credit";
-
-// Scale an adjustment's signed vectors so a slider can stress its magnitude live.
-function scaleBundle(bundle: ModelBundle, scales: Record<string, number>): ModelBundle {
-  return {
-    ...bundle,
-    adjustments: bundle.adjustments.map((a) => {
-      const s = scales[a.id] ?? 1;
-      if (s === 1) return a;
-      const mul = (v?: number[]) => (v ? v.map((n) => n * s) : v);
-      return { ...a, fcf: mul(a.fcf), leverageEbitda: mul(a.leverageEbitda), coverageInterest: mul(a.coverageInterest) };
-    }),
-  };
-}
 
 const SEV_TEXT: Record<string, string> = {
   red: "text-red",
@@ -48,18 +36,29 @@ export function ModelWorkbench({
   bundle,
   dealId,
   dealName,
+  initialEnabledIds,
+  initialScales,
 }: {
   bundle: ModelBundle;
   dealId: string;
   dealName: string;
+  initialEnabledIds: string[];
+  initialScales: Record<string, number>;
 }) {
   const [view, setView] = useState<View>("compare");
-  const [enabled, setEnabled] = useState<Set<string>>(() => new Set(defaultCreditIds(bundle)));
-  const [scales, setScales] = useState<Record<string, number>>({});
+  const [enabled, setEnabled] = useState<Set<string>>(
+    () => new Set(initialEnabledIds),
+  );
+  const [scales, setScales] =
+    useState<Record<string, number>>(initialScales);
 
-  const scaled = useMemo(() => scaleBundle(bundle, scales), [bundle, scales]);
+  const scaled = useMemo(() => scaleModelBundle(bundle, scales), [bundle, scales]);
   const sponsor = useMemo(() => computeModel(bundle, []), [bundle]);
   const credit = useMemo(() => computeModel(scaled, enabled), [scaled, enabled]);
+  const modelStateQuery = useMemo(
+    () => encodeModelState(enabled, scales),
+    [enabled, scales],
+  );
   const selected = view === "sponsor" ? sponsor : credit;
 
   const toggle = (id: string) =>
@@ -89,6 +88,7 @@ export function ModelWorkbench({
                 key={v}
                 type="button"
                 onClick={() => setView(v)}
+                aria-pressed={view === v}
                 className={`px-3 py-1.5 text-sm capitalize transition-colors ${
                   view === v ? "bg-gold/15 text-gold" : "text-text-2 hover:text-text"
                 }`}
@@ -98,13 +98,13 @@ export function ModelWorkbench({
             ))}
           </div>
           <Link
-            href={`/deals/${dealId}/model/one-pager`}
+            href={`/deals/${dealId}/model/one-pager?${modelStateQuery}`}
             className="rounded-md border border-gold/50 px-3 py-1.5 text-sm text-gold hover:bg-gold/10"
           >
             MD one-pager
           </Link>
           <a
-            href={`/api/deals/${dealId}/model/export`}
+            href={`/api/deals/${dealId}/model/export?${modelStateQuery}`}
             className="rounded-md border border-border px-3 py-1.5 text-sm text-text-2 hover:text-text"
           >
             Export .xlsx
@@ -288,6 +288,7 @@ function CreditLevers({
                     step={0.1}
                     value={scale}
                     onChange={(e) => onScale(a.id, Number(e.target.value))}
+                    aria-label={`Stress ${a.label}`}
                     className="h-1 flex-1 accent-[color:var(--gold)]"
                   />
                   <span className="mono w-10 text-right text-[11px] text-text">{Math.round(scale * 100)}%</span>
@@ -346,6 +347,7 @@ function Workbook({ resolved, bundle }: { resolved: ResolvedModel; bundle: Model
             key={t}
             type="button"
             onClick={() => setTab(t)}
+            aria-pressed={tab === t}
             className={`rounded-t-md px-3 py-1.5 text-sm transition-colors ${
               tab === t ? "bg-panel-2 text-gold" : "text-text-2 hover:text-text"
             }`}

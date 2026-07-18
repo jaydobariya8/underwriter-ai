@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDeal } from "@/lib/db";
-import { getModelBundle } from "@/lib/model";
+import { getModelBundle, parseModelState } from "@/lib/model";
 import { ICOnePager } from "@/components/model/ICOnePager";
 import { Panel } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 
-export default async function OnePagerPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+type PageSearchParams = Record<string, string | string[] | undefined>;
+
+export default async function OnePagerPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<PageSearchParams>;
+}) {
+  const [{ id }, query] = await Promise.all([params, searchParams]);
   const deal = await getDeal(id);
   if (!deal) notFound();
 
@@ -30,5 +38,23 @@ export default async function OnePagerPage({ params }: { params: Promise<{ id: s
     );
   }
 
-  return <ICOnePager bundle={bundle} dealId={deal.id} dealName={deal.name} />;
+  const stateParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(query)) {
+    if (Array.isArray(value)) {
+      value.forEach((item) => stateParams.append(key, item));
+    } else if (value !== undefined) {
+      stateParams.set(key, value);
+    }
+  }
+  const state = parseModelState(stateParams, bundle);
+
+  return (
+    <ICOnePager
+      bundle={bundle}
+      dealId={deal.id}
+      dealName={deal.name}
+      enabledIds={state.enabledIds}
+      scales={state.scales}
+    />
+  );
 }
